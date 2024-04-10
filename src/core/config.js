@@ -1,10 +1,11 @@
+import Logo from '@/assets/logo.png'
 /**
  * 网站配置文件
  */
 
 const config = {
   appName: 'BMS',
-  appLogo: 'https://www.gin-vue-admin.com/img/logo.png',
+  appLogo: Logo,
   showViteLogo: false,
   logs: [],
 }

@@ -4,10 +4,9 @@
     class="relative w-full h-full"
   >
     <div
-      class="rounded-lg flex items-center justify-evenly w-full h-full bg-white md:w-screen md:h-screen md:bg-[#194bfb]"
+      class="rounded-lg flex items-center justify-evenly w-full h-full bg-white md:w-screen md:h-screen md:bg-[#fff]"
     >
-      <div class="flex items-center w-10/12 h-full md:w-3/5 justify-evenly">
-        <div class="oblique h-[130%] w-3/5 bg-white transform -rotate-12 absolute -ml-52" />
+      <div class="flex items-center h-full w-12/12 md:w-3/5 justify-evenly">
         <!-- 分割斜块 -->
         <div class="z-[999] pt-12 pb-10 md:w-96 w-full  rounded-lg flex flex-col justify-between box-border">
           <div>
@@ -19,9 +18,10 @@
                 alt
               >
             </div>
-            <div class="mb-9">
+            <div class="mt-5 mb-9">
               <p class="text-4xl font-bold text-center">{{ $BMS_ADMIN.appName }}</p>
-              <p class="text-center text-sm font-normal text-gray-500 mt-2.5">A management platform using Golang and Vue
+              <p class="text-center text-sm font-normal text-gray-500 mt-2.5">
+                社会化媒体营销平台
               </p>
             </div>
             <el-form
@@ -79,93 +79,29 @@
               </el-form-item>
               <el-form-item class="mb-6">
                 <el-button
-                  class="w-full shadow shadow-blue-600 h-11"
+                  class="w-full h-11"
                   type="primary"
                   size="small"
                   @click="submitForm"
                 >登 录</el-button>
               </el-form-item>
-              <el-form-item class="mb-6">
-                <el-button
-                  class="w-full shadow shadow-blue-600 h-11"
-                  type="primary"
-                  size="small"
-                  @click="checkInit"
-                >前往初始化</el-button>
-
-              </el-form-item>
             </el-form>
           </div>
         </div>
       </div>
-      <div class="hidden md:block w-1/2 h-full float-right bg-[#194bfb]"><img
-        class="h-full"
-        src="@/assets/login_right_banner.jpg"
-        alt="banner"
-      ></div>
     </div>
-
-    <BottomInfo class="absolute left-0 right-0 z-20 w-full mx-auto bottom-3">
-      <div class="items-center justify-center hidden gap-2 links md:flex">
-        <a
-          href="http://doc.henrongyi.top/"
-          target="_blank"
-        >
-          <img
-            src="@/assets/docs.png"
-            class="w-8 h-8"
-            alt="文档"
-          >
-        </a>
-        <a
-          href="https://support.qq.com/product/371961"
-          target="_blank"
-        >
-          <img
-            src="@/assets/kefu.png"
-            class="w-8 h-8"
-            alt="客服"
-          >
-        </a>
-        <a
-          href="https://github.com/flipped-aurora/gin-vue-admin"
-          target="_blank"
-        >
-          <img
-            src="@/assets/github.png"
-            class="w-8 h-8"
-            alt="github"
-          >
-        </a>
-        <a
-          href="https://space.bilibili.com/322210472"
-          target="_blank"
-        >
-          <img
-            src="@/assets/video.png"
-            class="w-8 h-8"
-            alt="视频站"
-          >
-        </a>
-      </div>
-    </BottomInfo>
   </div>
 </template>
 
 <script setup>
 import { captcha } from '@/api/user'
-import { checkDB } from '@/api/initdb'
-import BottomInfo from '@/view/layout/bottomInfo/bottomInfo.vue'
 import { reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
-import { useRouter } from 'vue-router'
 import { useUserStore } from '@/pinia/modules/user'
 
 defineOptions({
   name: 'Login',
 })
-
-const router = useRouter()
 // 验证函数
 const checkUsername = (rule, value, callback) => {
   if (value.length < 5) {
@@ -239,22 +175,6 @@ const submitForm = () => {
       return false
     }
   })
-}
-
-// 跳转初始化
-const checkInit = async() => {
-  const res = await checkDB()
-  if (res.code === 0) {
-    if (res.data?.needInit) {
-      userStore.NeedInit()
-      router.push({ name: 'Init' })
-    } else {
-      ElMessage({
-        type: 'info',
-        message: '已配置数据库信息，无法初始化',
-      })
-    }
-  }
 }
 
 </script>

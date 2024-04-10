@@ -28,12 +28,6 @@ export const useUserStore = defineStore('user', () => {
     token.value = val
   }
 
-  const NeedInit = () => {
-    token.value = ''
-    window.localStorage.removeItem('token')
-    router.push({ name: 'Init', replace: true })
-  }
-
   const ResetUserInfo = (value = {}) => {
     userInfo.value = {
       ...userInfo.value,
@@ -145,7 +139,6 @@ export const useUserStore = defineStore('user', () => {
   return {
     userInfo,
     token,
-    NeedInit,
     ResetUserInfo,
     GetUserInfo,
     LoginIn,
