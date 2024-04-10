@@ -1,74 +1,6 @@
 <template>
   <div class="page">
-    <div class="gva-card-box">
-      <div class="gva-card gva-top-card">
-        <div class="gva-top-card-left">
-          <div class="gva-top-card-left-title">早安，管理员，请开始一天的工作吧</div>
-          <div class="gva-top-card-left-dot">{{ weatherInfo }}</div>
-          <el-row class="my-8 w-[500px]">
-            <el-col
-              :span="8"
-              :xs="24"
-              :sm="8"
-            >
-              <div class="flex items-center">
-                <el-icon class="dashboard-icon">
-                  <sort />
-                </el-icon>
-                今日流量 (1231231)
-              </div>
-            </el-col>
-            <el-col
-              :span="8"
-              :xs="24"
-              :sm="8"
-            >
-              <div class="flex items-center">
-                <el-icon class="dashboard-icon">
-                  <avatar />
-                </el-icon>
-                总用户数 (24001)
-              </div>
-            </el-col>
-            <el-col
-              :span="8"
-              :xs="24"
-              :sm="8"
-            >
-              <div class="flex items-center">
-                <el-icon class="dashboard-icon">
-                  <comment />
-                </el-icon>
-                好评率 (99%)
-              </div>
-            </el-col>
-          </el-row>
-          <div>
-            <div class="gva-top-card-left-item">
-              使用教学：
-              <a
-                style="color:#409EFF"
-                target="view_window"
-                href="https://www.bilibili.com/video/BV1Rg411u7xH/"
-              >https://www.bilibili.com/video/BV1Rg411u7xH</a>
-            </div>
-            <div class="gva-top-card-left-item">
-              插件仓库：
-              <a
-                style="color:#409EFF"
-                target="view_window"
-                href="https://plugin.gin-vue-admin.com/#/layout/home"
-              >https://plugin.gin-vue-admin.com</a>
-            </div>
-          </div>
-        </div>
-        <img
-          src="@/assets/dashboard.png"
-          class="gva-top-card-right"
-          alt
-        >
-      </div>
-    </div>
+
     <div class="gva-card-box">
       <div class="gva-card quick-entrance">
         <div class="gva-card-title">快捷入口</div>
@@ -99,43 +31,16 @@
         </el-row>
       </div>
     </div>
-    <div class="gva-card-box">
-      <div class="gva-card">
-        <div class="gva-card-title">数据统计</div>
-        <div class="p-4">
-          <el-row :gutter="20">
-            <el-col
-              :xs="24"
-              :sm="18"
-            >
-              <echarts-line />
-            </el-col>
-            <el-col
-              :xs="24"
-              :sm="6"
-            >
-              <dashboard-table />
-            </el-col>
-          </el-row>
-        </div>
-      </div>
-    </div>
   </div>
 </template>
 
 <script setup>
-import EchartsLine from '@/view/dashboard/dashboardCharts/echartsLine.vue'
-import DashboardTable from '@/view/dashboard/dashboardTable/dashboardTable.vue'
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useWeatherInfo } from '@/view/dashboard/weather.js'
-import SelectImage from '@/components/selectImage/selectImage.vue'
 
 defineOptions({
   name: 'Dashboard'
 })
-
-const weatherInfo = useWeatherInfo()
 
 const toolCards = ref([
   {

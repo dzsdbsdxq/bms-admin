@@ -1,12 +1,12 @@
 <template>
   <div
     id="userLayout"
-    class="w-full h-full relative"
+    class="relative w-full h-full"
   >
     <div
       class="rounded-lg flex items-center justify-evenly w-full h-full bg-white md:w-screen md:h-screen md:bg-[#194bfb]"
     >
-      <div class="md:w-3/5 w-10/12 h-full flex items-center justify-evenly">
+      <div class="flex items-center w-10/12 h-full md:w-3/5 justify-evenly">
         <div class="oblique h-[130%] w-3/5 bg-white transform -rotate-12 absolute -ml-52" />
         <!-- 分割斜块 -->
         <div class="z-[999] pt-12 pb-10 md:w-96 w-full  rounded-lg flex flex-col justify-between box-border">
@@ -15,12 +15,12 @@
 
               <img
                 class="w-24"
-                :src="$GIN_VUE_ADMIN.appLogo"
+                :src="$BMS_ADMIN.appLogo"
                 alt
               >
             </div>
             <div class="mb-9">
-              <p class="text-center text-4xl font-bold">{{ $GIN_VUE_ADMIN.appName }}</p>
+              <p class="text-4xl font-bold text-center">{{ $BMS_ADMIN.appName }}</p>
               <p class="text-center text-sm font-normal text-gray-500 mt-2.5">A management platform using Golang and Vue
               </p>
             </div>
@@ -59,7 +59,7 @@
                 prop="captcha"
                 class="mb-6"
               >
-                <div class="flex w-full justify-between">
+                <div class="flex justify-between w-full">
                   <el-input
                     v-model="loginFormData.captcha"
                     placeholder="请输入验证码"
@@ -79,7 +79,7 @@
               </el-form-item>
               <el-form-item class="mb-6">
                 <el-button
-                  class="shadow shadow-blue-600 h-11 w-full"
+                  class="w-full shadow shadow-blue-600 h-11"
                   type="primary"
                   size="large"
                   @click="submitForm"
@@ -87,7 +87,7 @@
               </el-form-item>
               <el-form-item class="mb-6">
                 <el-button
-                  class="shadow shadow-blue-600 h-11 w-full"
+                  class="w-full shadow shadow-blue-600 h-11"
                   type="primary"
                   size="large"
                   @click="checkInit"
@@ -105,8 +105,8 @@
       ></div>
     </div>
 
-    <BottomInfo class="left-0 right-0 absolute bottom-3 mx-auto  w-full z-20">
-      <div class="links items-center justify-center gap-2 hidden md:flex">
+    <BottomInfo class="absolute left-0 right-0 z-20 w-full mx-auto bottom-3">
+      <div class="items-center justify-center hidden gap-2 links md:flex">
         <a
           href="http://doc.henrongyi.top/"
           target="_blank"

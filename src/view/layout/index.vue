@@ -15,14 +15,14 @@
         >
           <img
             alt
-            class="w-9 h-9 p-1 bg-white rounded-full"
-            :src="$GIN_VUE_ADMIN.appLogo"
+            class="p-1 bg-white rounded-full w-9 h-9"
+            :src="$BMS_ADMIN.appLogo"
           >
           <div
             v-if="isSider"
-            class="inline-flex font-bold text-2xl"
+            class="inline-flex text-2xl font-bold"
             :style="{color:textColor}"
-          >{{ $GIN_VUE_ADMIN.appName }}</div>
+          >{{ $BMS_ADMIN.appName }}</div>
         </div>
         <Aside class="aside" />
       </el-aside>
@@ -35,12 +35,12 @@
         >
           <div
             :style="{width: `calc(100% - ${getAsideWidth()})`}"
-            class="fixed top-0 box-border z-50"
+            class="box-border fixed top-0 z-50"
           >
             <el-row>
               <el-col>
                 <el-header class="header-cont">
-                  <el-row class="p-0 h-full">
+                  <el-row class="h-full p-0">
                     <el-col
                       :xs="2"
                       :lg="1"
@@ -50,7 +50,7 @@
                       class="z-50 flex items-center pl-3"
                     >
                       <div
-                        class="text-black cursor-pointer text-lg leading-5"
+                        class="text-lg leading-5 text-black cursor-pointer"
                         @click="totalCollapse"
                       >
                         <div
@@ -94,8 +94,8 @@
                       <div class="mr-1.5 flex items-center">
                         <Search />
                         <el-dropdown>
-                          <div class="flex justify-center items-center h-full w-full">
-                            <span class="cursor-pointer flex justify-center items-center">
+                          <div class="flex items-center justify-center w-full h-full">
+                            <span class="flex items-center justify-center cursor-pointer">
                               <CustomPic />
                               <span
                                 v-show="!isMobile"
