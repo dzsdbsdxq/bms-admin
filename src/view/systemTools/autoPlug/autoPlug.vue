@@ -73,6 +73,7 @@
               <el-button
                 :icon="Plus"
                 circle
+                size="small"
                 @click="addkv(form.global)"
               />
             </span>
@@ -80,6 +81,7 @@
               <el-button
                 :icon="Minus"
                 circle
+                size="small"
                 @click="minkv(form.global,k)"
               />
             </span>
@@ -140,6 +142,7 @@
               <el-button
                 :icon="Plus"
                 circle
+                size="small"
                 @click="addkv(form.request)"
               />
             </span>
@@ -147,6 +150,7 @@
               <el-button
                 :icon="Minus"
                 circle
+                size="small"
                 @click="minkv(form.request,k)"
               />
             </span>
@@ -207,6 +211,7 @@
               <el-button
                 :icon="Plus"
                 circle
+                size="small"
                 @click="addkv(form.response)"
               />
             </span>
@@ -214,6 +219,7 @@
               <el-button
                 :icon="Minus"
                 circle
+                size="small"
                 @click="minkv(form.response,k)"
               />
             </span>
@@ -222,12 +228,9 @@
         <el-form-item>
           <el-button
             type="primary"
+            size="small"
             @click="createPlug"
           >创建</el-button>
-          <el-icon
-            class="cursor-pointer ml-3"
-            @click="toDoc('https://www.bilibili.com/video/BV1kv4y1g7nT?p=13&vd_source=f2640257c21e3b547a790461ed94875e')"
-          ><VideoCameraFilled /></el-icon>
         </el-form-item>
       </el-form>
 
@@ -240,14 +243,13 @@ import { toUpperCase } from '@/utils/stringFun'
 
 import {
   Plus,
-  Minus, VideoCameraFilled
+  Minus,
 } from '@element-plus/icons-vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 
 import { createPlugApi } from '@/api/autoCode.js'
 
 import { reactive } from 'vue'
-import { toDoc } from '@/utils/doc'
 
 const form = reactive({
   plugName: '',

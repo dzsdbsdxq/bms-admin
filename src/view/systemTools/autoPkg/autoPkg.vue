@@ -5,16 +5,13 @@
       title="此功能为开发环境使用，不建议发布到生产，具体使用效果请看视频https://www.bilibili.com/video/BV1kv4y1g7nT?p=3"
     />
     <div class="gva-table-box">
-      <div class="gva-btn-list gap-3 flex items-center">
+      <div class="flex items-center gap-3 gva-btn-list">
         <el-button
           type="primary"
           icon="plus"
+          size="small"
           @click="openDialog('addApi')"
         >新增</el-button>
-        <el-icon
-          class="cursor-pointer"
-          @click="toDoc('https://www.bilibili.com/video/BV1kv4y1g7nT?p=3&vd_source=f2640257c21e3b547a790461ed94875e')"
-        ><VideoCameraFilled /></el-icon>
       </div>
       <el-table :data="tableData">
         <el-table-column
@@ -50,7 +47,7 @@
           <template #default="scope">
             <el-button
               icon="delete"
-
+              size="small"
               type="primary"
               link
               @click="deleteApiFunc(scope.row)"
@@ -103,8 +100,12 @@
       </el-form>
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="closeDialog">取 消</el-button>
           <el-button
+            size="small"
+            @click="closeDialog"
+          >取 消</el-button>
+          <el-button
+            size="small"
             type="primary"
             @click="enterDialog"
           >确 定</el-button>
@@ -123,8 +124,6 @@ import {
 import { ref } from 'vue'
 import WarningBar from '@/components/warningBar/warningBar.vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { toDoc } from '@/utils/doc'
-import { VideoCameraFilled } from '@element-plus/icons-vue'
 
 defineOptions({
   name: 'AutoPkg',

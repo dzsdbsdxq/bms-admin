@@ -8,7 +8,10 @@
       :show-file-list="false"
       class="upload-btn"
     >
-      <el-button type="primary">普通上传</el-button>
+      <el-button
+        size="small"
+        type="primary"
+      >普通上传</el-button>
     </el-upload>
   </div>
 </template>

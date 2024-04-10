@@ -20,6 +20,7 @@
         />
         <el-button
           style="width:18%;margin-left:2%"
+          size="small"
           @click="autoFill"
         >
           <span style="font-size: 12px">自动填充</span>

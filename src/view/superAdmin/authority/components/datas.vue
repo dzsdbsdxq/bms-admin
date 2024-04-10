@@ -8,21 +8,25 @@
       <el-button
         class="float-left"
         type="primary"
+        size="small"
         @click="all"
       >全选</el-button>
       <el-button
         class="float-left"
         type="primary"
+        size="small"
         @click="self"
       >本角色</el-button>
       <el-button
         class="float-left"
         type="primary"
+        size="small"
         @click="selfAndChildren"
       >本角色及子角色</el-button>
       <el-button
         class="float-right"
         type="primary"
+        size="small"
         @click="authDataEnter"
       >确 定</el-button>
     </div>

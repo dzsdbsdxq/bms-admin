@@ -6,10 +6,6 @@
       @click="handleReload"
     />
     <Screenfull class="search-icon" />
-    <div
-      class="gvaIcon gvaIcon-customer-service"
-      @click="toService"
-    />
   </div>
 </template>
 
@@ -29,9 +25,6 @@ const handleReload = () => {
   setTimeout(() => {
     reload.value = false
   }, 500)
-}
-const toService = () => {
-  window.open('https://support.qq.com/product/371961')
 }
 
 </script>

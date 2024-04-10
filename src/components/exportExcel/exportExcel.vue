@@ -2,6 +2,7 @@
   <el-button
     type="primary"
     icon="download"
+    size="small"
     @click="exportExcelFunc"
   >导出</el-button>
 </template>

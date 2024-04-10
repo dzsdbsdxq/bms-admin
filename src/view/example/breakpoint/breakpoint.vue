@@ -24,6 +24,7 @@
       <el-button
         :disabled="limitFileSize"
         type="primary"
+        size="small"
         class="uploadBtn"
         @click="getFile"
       >上传文件</el-button>

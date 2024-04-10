@@ -38,7 +38,7 @@
         删除</span>
       <span
         v-else
-        class="update text-gray-600"
+        class="text-gray-600 update"
         @click="openChooseImg"
       >
         <el-icon>
@@ -90,7 +90,7 @@
         class="add-image"
       >
         <span
-          class="update  text-gray-600"
+          class="text-gray-600 update"
           @click="openChooseImg"
         >
           <el-icon>
@@ -104,9 +104,6 @@
       title="媒体库"
       size="650px"
     >
-      <warning-bar
-        title="点击“文件名/备注”可以编辑文件名或者备注内容。"
-      />
       <div class="gva-btn-list">
         <upload-common
           :image-common="imageCommon"
@@ -137,6 +134,7 @@
             <el-button
               type="primary"
               icon="search"
+              size="small"
               @click="getImageList"
             >查询
             </el-button>
@@ -197,8 +195,9 @@
         :current-page="page"
         :page-size="pageSize"
         :total="total"
+        small
         :style="{'justify-content':'center'}"
-        layout="total, prev, pager, next, jumper"
+        layout="total, prev, pager, next"
         @current-change="handleCurrentChange"
         @size-change="handleSizeChange"
       />

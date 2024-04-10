@@ -8,6 +8,7 @@
       />
       <el-button
         type="primary"
+        size="small"
         @click="pubPlugin"
       >打包插件</el-button>
     </div>

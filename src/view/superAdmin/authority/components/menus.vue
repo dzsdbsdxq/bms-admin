@@ -9,10 +9,11 @@
       <el-button
         class="float-right"
         type="primary"
+        size="small"
         @click="relation"
       >确 定</el-button>
     </div>
-    <div class="tree-content clear-both">
+    <div class="clear-both tree-content">
       <el-scrollbar>
         <el-tree
           ref="menuTree"
@@ -33,7 +34,7 @@
                 <el-button
                   type="primary"
                   link
-
+                  size="small"
                   :style="{color:row.defaultRouter === data.name?'#E6A23C':'#85ce61'}"
                   :disabled="!node.checked"
                   @click="() => setDefault(data)"
@@ -45,7 +46,7 @@
                 <el-button
                   type="primary"
                   link
-
+                  size="small"
                   @click="() => OpenBtn(data)"
                 >
                   分配按钮
@@ -82,8 +83,12 @@
       </el-table>
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="closeDialog">取 消</el-button>
           <el-button
+            size="small"
+            @click="closeDialog"
+          >取 消</el-button>
+          <el-button
+            size="small"
             type="primary"
             @click="enterDialog"
           >确 定</el-button>

@@ -3,11 +3,12 @@
     <warning-bar
       title="获取字典且缓存方法已在前端utils/dictionary 已经封装完成 不必自己书写 使用方法查看文件内注释"
     />
-    <div class="dict-box flex gap-4">
-      <div class="w-64 bg-white p-4">
-        <div class="flex justify-between items-center">
-          <span class="text font-bold">字典列表</span>
+    <div class="flex gap-4 dict-box">
+      <div class="w-64 p-4 bg-white">
+        <div class="flex items-center justify-between">
+          <span class="font-bold text">字典列表</span>
           <el-button
+            size="small"
             type="primary"
             @click="openDialog"
           >
@@ -21,7 +22,7 @@
           <div
             v-for="dictionary in dictionaryData"
             :key="dictionary.ID"
-            class="rounded flex justify-between items-center px-2 py-4 cursor-pointer mt-2 hover:bg-blue-50 hover:text-gray-800 group bg-gray-50"
+            class="flex items-center justify-between px-2 py-4 mt-2 rounded cursor-pointer hover:bg-blue-50 hover:text-gray-800 group bg-gray-50"
             :class="selectID === dictionary.ID && 'active'"
             @click="toDetail(dictionary)"
           >
@@ -107,9 +108,12 @@
       </el-form>
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="closeDialog">取 消</el-button>
           <el-button
-
+            size="small"
+            @click="closeDialog"
+          >取 消</el-button>
+          <el-button
+            size="small"
             type="primary"
             @click="enterDialog"
           >确 定</el-button>

@@ -12,7 +12,7 @@
       >
         <el-collapse-item name="1">
           <template #title>
-            <div class="text-xl pl-4 flex items-center">
+            <div class="flex items-center pl-4 text-xl">
               点这里从现有数据库创建代码
               <el-icon>
                 <pointer />
@@ -99,6 +99,7 @@
             <el-form-item>
               <el-button
                 type="primary"
+                size="small"
                 @click="getColumnFunc"
               >使用此表创建</el-button>
             </el-form-item>
@@ -192,11 +193,11 @@
             />
           </el-select>
           <el-icon
-            class="cursor-pointer ml-2 text-gray-600"
+            class="ml-2 text-gray-600 cursor-pointer"
             @click="getPkgs"
           ><refresh /></el-icon>
           <el-icon
-            class="cursor-pointer ml-2 text-gray-600"
+            class="ml-2 text-gray-600 cursor-pointer"
             @click="goPkgs"
           ><document-add /></el-icon>
         </el-form-item>
@@ -303,6 +304,7 @@
       <div class="gva-btn-list">
         <el-button
           type="primary"
+          size="small"
           @click="editAndAddField()"
         >新增字段</el-button>
       </div>
@@ -456,21 +458,21 @@
         >
           <template #default="scope">
             <el-button
-
+              size="small"
               type="primary"
               link
               icon="edit"
               @click="editAndAddField(scope.row)"
             >高级编辑</el-button>
             <el-button
-
+              size="small"
               type="primary"
               link
               :disabled="scope.$index === 0"
               @click="moveUpField(scope.$index)"
             >上移</el-button>
             <el-button
-
+              size="small"
               type="primary"
               link
               :disabled="(scope.$index + 1) === form.fields.length"
@@ -479,6 +481,7 @@
             <el-button
               type="primary"
               link
+              size="small"
               icon="delete"
               @click="deleteField(scope.$index)"
             >删除</el-button>
@@ -486,13 +489,15 @@
         </el-table-column>
       </el-table>
       <!-- 组件列表 -->
-      <div class="gva-btn-list justify-end mt-4">
+      <div class="justify-end mt-4 gva-btn-list">
         <el-button
           type="primary"
+          size="small"
           @click="enterForm(true)"
         >预览代码</el-button>
         <el-button
           type="primary"
+          size="small"
           @click="enterForm(false)"
         >生成代码</el-button>
       </div>
@@ -503,12 +508,16 @@
       size="70%"
       :show-close="false"
     >
-      <template #title>
-        <div class="flex justify-between items-center">
+      <template #header>
+        <div class="flex items-center justify-between">
           <span class="text-lg">组件内容</span>
           <div>
-            <el-button @click="closeDialog">取 消</el-button>
             <el-button
+              size="small"
+              @click="closeDialog"
+            >取 消</el-button>
+            <el-button
+              size="small"
               type="primary"
               @click="enterDialog"
             >确 定</el-button>
@@ -532,16 +541,18 @@
       :show-close="false"
     >
 
-      <template #title>
-        <div class="flex justify-between items-center">
+      <template #header>
+        <div class="flex items-center justify-between">
           <span class="text-lg">操作栏</span>
           <div>
             <el-button
               type="primary"
+              size="small"
               @click="selectText"
             >全选</el-button>
             <el-button
               type="primary"
+              size="small"
               @click="copy"
             >复制</el-button>
           </div>

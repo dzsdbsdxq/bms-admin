@@ -9,24 +9,21 @@
         <el-form-item label="路径">
           <el-input
             v-model="searchInfo.path"
+            size="small"
             placeholder="路径"
-          />
-        </el-form-item>
-        <el-form-item label="描述">
-          <el-input
-            v-model="searchInfo.description"
-            placeholder="描述"
           />
         </el-form-item>
         <el-form-item label="API组">
           <el-input
             v-model="searchInfo.apiGroup"
+            size="small"
             placeholder="api组"
           />
         </el-form-item>
         <el-form-item label="请求">
           <el-select
             v-model="searchInfo.method"
+            size="small"
             clearable
             placeholder="请选择"
           >
@@ -42,10 +39,12 @@
           <el-button
             type="primary"
             icon="search"
+            size="small"
             @click="onSubmit"
           >查询</el-button>
           <el-button
             icon="refresh"
+            size="small"
             @click="onReset"
           >重置</el-button>
         </el-form-item>
@@ -56,19 +55,18 @@
         <el-button
           type="primary"
           icon="plus"
+          size="small"
           @click="openDialog('addApi')"
         >新增</el-button>
-        <el-icon
-          class="cursor-pointer"
-          @click="toDoc('https://www.bilibili.com/video/BV1kv4y1g7nT?p=7&vd_source=f2640257c21e3b547a790461ed94875e')"
-        ><VideoCameraFilled /></el-icon>
         <el-button
           icon="delete"
+          size="small"
           :disabled="!apis.length"
           @click="onDelete"
         >删除</el-button>
         <el-button
           icon="Refresh"
+          size="small"
           @click="onFresh"
         >刷新缓存</el-button>
         <ExportTemplate
@@ -102,14 +100,14 @@
         <el-table-column
           align="left"
           label="API路径"
-          min-width="150"
+          min-width="250"
           prop="path"
           sortable="custom"
         />
         <el-table-column
           align="left"
           label="API分组"
-          min-width="150"
+          min-width="100"
           prop="apiGroup"
           sortable="custom"
         />
@@ -123,7 +121,7 @@
         <el-table-column
           align="left"
           label="请求"
-          min-width="150"
+          min-width="100"
           prop="method"
           sortable="custom"
         >
@@ -143,14 +141,14 @@
           <template #default="scope">
             <el-button
               icon="edit"
-
+              size="small"
               type="primary"
               link
               @click="editApiFunc(scope.row)"
             >编辑</el-button>
             <el-button
               icon="delete"
-
+              size="small"
               type="primary"
               link
               @click="deleteApiFunc(scope.row)"
@@ -162,9 +160,10 @@
         <el-pagination
           :current-page="page"
           :page-size="pageSize"
+          small
           :page-sizes="[10, 30, 50, 100]"
           :total="total"
-          layout="total, sizes, prev, pager, next, jumper"
+          layout="total, sizes, prev, pager, next"
           @current-change="handleCurrentChange"
           @size-change="handleSizeChange"
         />
@@ -178,12 +177,16 @@
       :before-close="closeDialog"
       :show-close="false"
     >
-      <template #title>
-        <div class="flex justify-between items-center">
+      <template #header>
+        <div class="flex items-center justify-between">
           <span class="text-lg">{{ dialogTitle }}</span>
           <div>
-            <el-button @click="closeDialog">取 消</el-button>
             <el-button
+              size="small"
+              @click="closeDialog"
+            >取 消</el-button>
+            <el-button
+              size="small"
               type="primary"
               @click="enterDialog"
             >确 定</el-button>
@@ -261,8 +264,6 @@ import { toSQLLine } from '@/utils/stringFun'
 import WarningBar from '@/components/warningBar/warningBar.vue'
 import { ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { VideoCameraFilled } from '@element-plus/icons-vue'
-import { toDoc } from '@/utils/doc'
 import ExportExcel from '@/components/exportExcel/exportExcel.vue'
 import ExportTemplate from '@/components/exportExcel/exportTemplate.vue'
 import ImportExcel from '@/components/exportExcel/importExcel.vue'

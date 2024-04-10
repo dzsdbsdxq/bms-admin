@@ -1,6 +1,5 @@
 <template>
   <div class="authority">
-    <warning-bar title="注：右上角头像下拉可切换角色" />
     <div class="gva-table-box">
       <div class="gva-btn-list">
         <el-button
@@ -13,6 +12,8 @@
       <el-table
         :data="tableData"
         :tree-props="{children: 'children', hasChildren: 'hasChildren'}"
+        :size="`small`"
+        :stripe="true"
         row-key="authorityId"
         style="width: 100%"
       >
@@ -35,35 +36,35 @@
           <template #default="scope">
             <el-button
               icon="setting"
-
+              size="small"
               type="primary"
               link
               @click="openDrawer(scope.row)"
             >设置权限</el-button>
             <el-button
               icon="plus"
-
+              size="small"
               type="primary"
               link
               @click="addAuthority(scope.row.authorityId)"
             >新增子角色</el-button>
             <el-button
               icon="copy-document"
-
+              size="small"
               type="primary"
               link
               @click="copyAuthorityFunc(scope.row)"
             >拷贝</el-button>
             <el-button
               icon="edit"
-
+              size="small"
               type="primary"
               link
               @click="editAuthority(scope.row)"
             >编辑</el-button>
             <el-button
               icon="delete"
-
+              size="small"
               type="primary"
               link
               @click="deleteAuth(scope.row)"
@@ -120,8 +121,12 @@
       </el-form>
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="closeDialog">取 消</el-button>
           <el-button
+            size="small"
+            @click="closeDialog"
+          >取 消</el-button>
+          <el-button
+            size="small"
             type="primary"
             @click="enterDialog"
           >确 定</el-button>

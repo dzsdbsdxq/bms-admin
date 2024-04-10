@@ -1,16 +1,18 @@
 <template>
   <div>
-    <warning-bar title="注：右上角头像下拉可切换角色" />
     <div class="gva-table-box">
       <div class="gva-btn-list">
         <el-button
           type="primary"
           icon="plus"
+          size="small"
           @click="addUser"
         >新增用户</el-button>
       </div>
       <el-table
         :data="tableData"
+        :border="true"
+        size="small"
         row-key="ID"
       >
         <el-table-column
@@ -64,6 +66,7 @@
             <el-cascader
               v-model="scope.row.authorityIds"
               :options="authOptions"
+              size="small"
               :show-all-levels="false"
               collapse-tags
               :props="{ multiple:true,checkStrictly: true,label:'authorityName',value:'authorityId',disabled:'disabled',emitPath:false}"
@@ -98,6 +101,7 @@
             <el-button
               type="primary"
               link
+              size="small"
               icon="delete"
               @click="deleteUserFunc(scope.row)"
             >删除</el-button>
@@ -105,12 +109,14 @@
               type="primary"
               link
               icon="edit"
+              size="small"
               @click="openEdit(scope.row)"
             >编辑</el-button>
             <el-button
               type="primary"
               link
               icon="magic-stick"
+              size="small"
               @click="resetPasswordFunc(scope.row)"
             >重置密码</el-button>
           </template>
@@ -123,7 +129,8 @@
           :page-size="pageSize"
           :page-sizes="[10, 30, 50, 100]"
           :total="total"
-          layout="total, sizes, prev, pager, next, jumper"
+          small
+          layout="total, sizes, prev, pager, next"
           @current-change="handleCurrentChange"
           @size-change="handleSizeChange"
         />
@@ -136,12 +143,16 @@
       :close-on-press-escape="false"
       :close-on-click-modal="false"
     >
-      <template #title>
-        <div class="flex justify-between items-center">
+      <template #header>
+        <div class="flex items-center justify-between">
           <span class="text-lg">用户</span>
           <div>
-            <el-button @click="closeAddUserDialog">取 消</el-button>
             <el-button
+              size="small"
+              @click="closeAddUserDialog"
+            >取 消</el-button>
+            <el-button
+              size="small"
               type="primary"
               @click="enterAddUserDialog"
             >确 定</el-button>
@@ -194,6 +205,7 @@
           <el-cascader
             v-model="userInfo.authorityIds"
             style="width:100%"
+            size="small"
             :options="authOptions"
             :show-all-levels="false"
             :props="{ multiple:true,checkStrictly: true,label:'authorityName',value:'authorityId',disabled:'disabled',emitPath:false}"

@@ -2,6 +2,7 @@
   <el-button
     type="primary"
     icon="download"
+    size="small"
     @click="exportTemplate"
   >下载模板</el-button>
 </template>

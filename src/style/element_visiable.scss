@@ -1,8 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import '@/style/main.scss';
 
 .el-button {
     font-weight: 400;
     border-radius: 2px;
+}
+.el-button--primary{
+    --el-button-text-color: var(--el-color-white);
+    --el-button-bg-color: #41b883 !important;
+    --el-button-border-color: #41b883 !important;;
+    --el-button-outline-color: var(--el-color-primary-light-5);
+    --el-button-active-color: var(--el-color-primary-dark-2);
+    --el-button-hover-text-color: var(--el-color-white);
+    --el-button-hover-link-text-color: var(--el-color-primary-light-5);
+    --el-button-hover-bg-color: var(--el-color-primary-light-3);
+    --el-button-hover-border-color: var(--el-color-primary-light-3);
+    --el-button-active-bg-color: var(--el-color-primary-dark-2);
+    --el-button-active-border-color: var(--el-color-primary-dark-2);
+    --el-button-disabled-text-color: var(--el-color-white);
+    --el-button-disabled-bg-color: var(--el-color-primary-light-5);
+    --el-button-disabled-border-color: var(--el-color-primary-light-5);
 }
 
 .gva-pagination {
@@ -31,6 +50,7 @@
 
 .el-form--inline {
     .el-form-item {
+        @apply mb-0;
         & > .el-input, .el-cascader, .el-select, .el-date-editor, .el-autocomplete {
             @apply w-52;
         }
@@ -46,15 +66,15 @@
     @apply min-h-[calc(100vh-200px)] px-3 py-4 mt-28 mb-4 mx-1;
     .el-table {
         th {
-            @apply px-0 py-2;
+            @apply px-0;
             .cell {
-                @apply leading-[40px] text-gray-700;
+                @apply leading-[35px] text-gray-700;
             }
         }
         td {
-            @apply px-0 py-2;
+            @apply px-0;
             .cell {
-                @apply leading-[40px] text-gray-600;
+                @apply leading-[35px] text-gray-600 text-sm;
             }
         }
         .is-leaf {
@@ -174,10 +194,10 @@
             .el-tabs__header {
                 @apply m-0;
                 .el-tabs__item{
-                    @apply border-solid border-r border-t-0 border-gray-100 border-b-0 border-l-0;
+                    @apply border-solid border-r border-t-0 border-gray-100 border-b-0 border-l-0 text-sm;
                 }
                 .el-tabs__item.is-active {
-                    @apply bg-blue-500 bg-opacity-5;
+                    @apply bg-gray-400 bg-opacity-15;
                 }
                 .el-tabs__nav {
                     @apply border-0;
@@ -204,4 +224,8 @@
             }
         }
     }
+}
+
+.el-tabs {
+    --el-tabs-header-height: 30px !important;
 }

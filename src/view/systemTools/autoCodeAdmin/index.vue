@@ -4,6 +4,7 @@
       <div class="gva-btn-list">
         <el-button
           type="primary"
+          size="small"
           icon="plus"
           @click="goAutoCode(null)"
         >新增</el-button>
@@ -79,23 +80,27 @@
               <el-button
                 type="primary"
                 link
+                size="small"
                 :disabled="scope.row.flag === 1"
                 @click="rollbackFunc(scope.row,true)"
               >回滚(删表)</el-button>
               <el-button
                 type="primary"
                 link
+                size="small"
                 :disabled="scope.row.flag === 1"
                 @click="rollbackFunc(scope.row,false)"
               >回滚(不删表)</el-button>
               <el-button
                 type="primary"
                 link
+                size="small"
                 @click="goAutoCode(scope.row)"
               >复用</el-button>
               <el-button
                 type="primary"
                 link
+                size="small"
                 @click="deleteRow(scope.row)"
               >删除</el-button>
             </div>
@@ -108,7 +113,8 @@
           :page-size="pageSize"
           :page-sizes="[10, 30, 50, 100]"
           :total="total"
-          layout="total, sizes, prev, pager, next, jumper"
+          small
+          layout="total, sizes, prev, pager, next"
           @current-change="handleCurrentChange"
           @size-change="handleSizeChange"
         />

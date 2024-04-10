@@ -6,6 +6,7 @@
         <el-button
           type="primary"
           icon="plus"
+          size="small"
           @click="openDialog"
         >新增</el-button>
       </div>
@@ -57,12 +58,14 @@
               type="primary"
               link
               icon="edit"
+              size="small"
               @click="updateCustomer(scope.row)"
             >变更</el-button>
             <el-button
               type="primary"
               link
               icon="delete"
+              size="small"
               @click="deleteCustomer(scope.row)"
             >删除</el-button>
           </template>
@@ -74,7 +77,8 @@
           :page-size="pageSize"
           :page-sizes="[10, 30, 50, 100]"
           :total="total"
-          layout="total, sizes, prev, pager, next, jumper"
+          small
+          layout="total, sizes, prev, pager, next"
           @current-change="handleCurrentChange"
           @size-change="handleSizeChange"
         />
@@ -105,9 +109,13 @@
       </el-form>
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="closeDialog">取 消</el-button>
+          <el-button
+            size="small"
+            @click="closeDialog"
+          >取 消</el-button>
           <el-button
             type="primary"
+            size="small"
             @click="enterDialog"
           >确 定</el-button>
         </div>

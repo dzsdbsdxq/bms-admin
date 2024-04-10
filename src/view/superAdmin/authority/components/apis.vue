@@ -4,11 +4,13 @@
       <el-input
         v-model="filterText"
         class="w-3/5"
+        size="small"
         placeholder="筛选"
       />
       <el-button
         class="float-right"
         type="primary"
+        size="small"
         @click="authApiEnter"
       >确 定</el-button>
     </div>

@@ -27,10 +27,12 @@
           <el-button
             type="primary"
             icon="search"
+            size="small"
             @click="onSubmit"
           >查询</el-button>
           <el-button
             icon="refresh"
+            size="small"
             @click="onReset"
           >重置</el-button>
         </el-form-item>
@@ -40,6 +42,7 @@
       <div class="gva-btn-list">
         <el-button
           icon="delete"
+          size="small"
           :disabled="!multipleSelection.length"
           @click="onDelete"
         >删除</el-button>
@@ -170,7 +173,8 @@
           :page-size="pageSize"
           :page-sizes="[10, 30, 50, 100]"
           :total="total"
-          layout="total, sizes, prev, pager, next, jumper"
+          small
+          layout="total, sizes, prev, pager, next"
           @current-change="handleCurrentChange"
           @size-change="handleSizeChange"
         />

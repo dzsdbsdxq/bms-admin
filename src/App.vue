@@ -17,9 +17,6 @@ defineOptions({
 
 </script>
 <style lang="scss">
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 // 引入初始化样式
 #app {
   background: #eee;

@@ -1,38 +1,38 @@
 <template>
   <div class="rounded-lg  flex items-center justify-evenly w-full h-full relative bg-white md:w-screen md:h-screen md:bg-[#194bfb] overflow-hidden">
-    <div class="rounded-md w-full h-full flex items-center justify-center overflow-hidden">
+    <div class="flex items-center justify-center w-full h-full overflow-hidden rounded-md">
       <div class="oblique h-[130%] w-3/5 bg-white transform -rotate-12 absolute -ml-80" />
       <div
         v-if="!page.showForm"
         :class="[page.showReadme ?'slide-out-right' :'slide-in-fwd-top' ]"
       >
-        <div class=" text-lg">
-          <div class="font-sans text-4xl font-bold text-center mb-4">GIN-VUE-ADMIN</div>
-          <p class="text-gray-600 mb-2">初始化须知</p>
-          <p class="text-gray-600 mb-2">1.您需有用一定的VUE和GOLANG基础</p>
-          <p class="text-gray-600 mb-2">2.请您确认是否已经阅读过<a
-            class="text-blue-600 font-bold"
+        <div class="text-lg ">
+          <div class="mb-4 font-sans text-4xl font-bold text-center">GIN-VUE-ADMIN</div>
+          <p class="mb-2 text-gray-600">初始化须知</p>
+          <p class="mb-2 text-gray-600">1.您需有用一定的VUE和GOLANG基础</p>
+          <p class="mb-2 text-gray-600">2.请您确认是否已经阅读过<a
+            class="font-bold text-blue-600"
             href="https://www.gin-vue-admin.com"
             target="_blank"
           >官方文档</a> <a
-            class="text-blue-600 font-bold"
+            class="font-bold text-blue-600"
             href="https://www.bilibili.com/video/BV1kv4y1g7nT?p=2"
             target="_blank"
           >初始化视频</a></p>
-          <p class="text-gray-600 mb-2">3.请您确认是否了解后续的配置流程</p>
-          <p class="text-gray-600 mb-2">4.如果您使用mysql数据库，请确认数据库引擎为<span class="text-red-600 font-bold text-3xl ml-2 ">innoDB</span></p>
-          <p class="text-gray-600 mb-2">注：开发组不为文档中书写过的内容提供无偿服务</p>
+          <p class="mb-2 text-gray-600">3.请您确认是否了解后续的配置流程</p>
+          <p class="mb-2 text-gray-600">4.如果您使用mysql数据库，请确认数据库引擎为<span class="ml-2 text-3xl font-bold text-red-600 ">innoDB</span></p>
+          <p class="mb-2 text-gray-600">注：开发组不为文档中书写过的内容提供无偿服务</p>
           <p class="flex items-center justify-between mt-8">
             <el-button
               type="primary"
-              size="large"
+              size="small"
               @click="goDoc"
             >
               阅读文档
             </el-button>
             <el-button
               type="primary"
-              size="large"
+              size="small"
               @click="showNext"
             >
               我已确认
@@ -140,6 +140,7 @@
             <div style="text-align: right">
               <el-button
                 type="primary"
+                size="small"
                 @click="onSubmit"
               >立即初始化</el-button>
             </div>

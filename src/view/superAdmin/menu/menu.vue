@@ -5,18 +5,17 @@
         <el-button
           type="primary"
           icon="plus"
+          size="small"
           @click="addMenu('0')"
         >新增根菜单</el-button>
-        <el-icon
-          class="cursor-pointer"
-          @click="toDoc('https://www.bilibili.com/video/BV1kv4y1g7nT/?p=4&vd_source=f2640257c21e3b547a790461ed94875e')"
-        ><VideoCameraFilled /></el-icon>
       </div>
 
       <!-- 由于此处菜单跟左侧列表一一对应所以不需要分页 pageSize默认999 -->
       <el-table
         :data="tableData"
         row-key="ID"
+        :size="`small`"
+        :stripe="true"
       >
         <el-table-column
           align="left"
@@ -105,12 +104,14 @@
               type="primary"
               link
               icon="plus"
+              size="small"
               @click="addMenu(scope.row.ID)"
             >添加子菜单</el-button>
             <el-button
               type="primary"
               link
               icon="edit"
+              size="small"
               @click="editMenu(scope.row.ID)"
             >编辑</el-button>
             <el-button
@@ -118,6 +119,7 @@
               type="primary"
               link
               icon="delete"
+              size="small"
               @click="deleteMenu(scope.row.ID)"
             >删除</el-button>
           </template>
@@ -130,12 +132,16 @@
       :before-close="handleClose"
       :show-close="false"
     >
-      <template #title>
-        <div class="flex justify-between items-center">
+      <template #header>
+        <div class="flex items-center justify-between">
           <span class="text-lg">{{ dialogTitle }}</span>
           <div>
-            <el-button @click="closeDialog">取 消</el-button>
             <el-button
+              size="small"
+              @click="closeDialog"
+            >取 消</el-button>
+            <el-button
+              size="small"
               type="primary"
               @click="enterDialog"
             >确 定</el-button>
@@ -231,6 +237,7 @@
           />
           <span style="font-size:12px;margin-right:12px;">如果菜单包含子菜单，请创建router-view二级路由页面或者</span><el-button
             style="margin-top:4px"
+            size="small"
             @click="form.component = 'view/routerHolder.vue'"
           >点我设置</el-button>
         </el-form-item>
@@ -361,12 +368,9 @@
           <el-button
             type="primary"
             icon="edit"
+            size="small"
             @click="addParameter(form)"
           >新增菜单参数</el-button>
-          <el-icon
-            class="cursor-pointer"
-            @click="toDoc('https://www.bilibili.com/video/BV1kv4y1g7nT?p=9&vd_source=f2640257c21e3b547a790461ed94875e')"
-          ><VideoCameraFilled /></el-icon>
         </div>
         <el-table
           :data="form.parameters"
@@ -424,7 +428,7 @@
               <div>
                 <el-button
                   type="danger"
-
+                  size="small"
                   icon="delete"
                   @click="deleteParameter(form.parameters,scope.$index)"
                 >删除</el-button>
@@ -437,17 +441,10 @@
           <el-button
             type="primary"
             icon="edit"
+            size="small"
             @click="addBtn(form)"
           >新增可控按钮
           </el-button>
-          <el-icon
-            class="cursor-pointer"
-            @click="toDoc('https://www.gin-vue-admin.com/guide/web/button-auth.html')"
-          ><QuestionFilled /></el-icon>
-          <el-icon
-            class="cursor-pointer"
-            @click="toDoc('https://www.bilibili.com/video/BV1kv4y1g7nT?p=11&vd_source=f2640257c21e3b547a790461ed94875e')"
-          ><VideoCameraFilled /></el-icon>
         </div>
 
         <el-table
@@ -483,7 +480,7 @@
               <div>
                 <el-button
                   type="danger"
-
+                  size="small"
                   icon="delete"
                   @click="deleteBtn(form.menuBtn,scope.$index)"
                 >删除</el-button>
@@ -509,9 +506,7 @@ import WarningBar from '@/components/warningBar/warningBar.vue'
 import { canRemoveAuthorityBtnApi } from '@/api/authorityBtn'
 import { reactive, ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-import { QuestionFilled, VideoCameraFilled } from '@element-plus/icons-vue'
-
-import { toDoc } from '@/utils/doc'
+import { QuestionFilled } from '@element-plus/icons-vue'
 
 defineOptions({
   name: 'Menus',

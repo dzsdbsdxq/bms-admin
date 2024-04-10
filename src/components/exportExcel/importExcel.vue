@@ -7,6 +7,7 @@
   >
     <el-button
       type="primary"
+      size="small"
       icon="upload"
     >导入</el-button>
   </el-upload>

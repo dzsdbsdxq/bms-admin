@@ -11,7 +11,10 @@
       :accept="accept"
       class="upload-btn"
     >
-      <el-button type="primary">上传文件</el-button>
+      <el-button
+        size="small"
+        type="primary"
+      >上传文件</el-button>
     </el-upload>
   </div>
 </template>

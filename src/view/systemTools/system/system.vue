@@ -156,18 +156,18 @@
           </el-form-item>
           <el-form-item label="hosts">
             <template v-for="(item,k) in config.mongo.hosts">
-            <div
-              v-for="(_,k2) in item"
-              :key="k2"
-            >
-              <el-form-item
-                :key="k+k2"
-                :label="k2"
+              <div
+                v-for="(_,k2) in item"
+                :key="k2"
               >
-                <el-input v-model="item[k2]" />
-              </el-form-item>
-            </div>
-          </template>
+                <el-form-item
+                  :key="k+k2"
+                  :label="k2"
+                >
+                  <el-input v-model="item[k2]" />
+                </el-form-item>
+              </div>
+            </template>
           </el-form-item>
         </el-collapse-item>
 
@@ -197,7 +197,10 @@
             <el-input v-model="config.email.secret" />
           </el-form-item>
           <el-form-item label="测试邮件">
-            <el-button @click="email">测试邮件</el-button>
+            <el-button
+              size="small"
+              @click="email"
+            >测试邮件</el-button>
           </el-form-item>
         </el-collapse-item>
         <el-collapse-item
@@ -448,10 +451,12 @@
     <div class="mt-4">
       <el-button
         type="primary"
+        size="small"
         @click="update"
       >立即更新</el-button>
       <el-button
         type="primary"
+        size="small"
         @click="reload"
       >重启服务（开发中）</el-button>
     </div>

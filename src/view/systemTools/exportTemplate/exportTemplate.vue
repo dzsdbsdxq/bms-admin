@@ -1,9 +1,5 @@
 <template>
   <div>
-    <WarningBar
-      title="本功能提供同步的表格导出功能，大数据量的异步表格导出功能，可以选择点我定制"
-      href="https://flipped-aurora.feishu.cn/docx/KwjxdnvatozgwIxGV0rcpkZSn4d"
-    />
     <div class="gva-search-box">
       <el-form
         ref="elSearchFormRef"
@@ -13,7 +9,7 @@
         :rules="searchRule"
         @keyup.enter="onSubmit"
       >
-        <el-form-item
+        <!-- <el-form-item
           label="创建日期"
           prop="createdAt"
         >
@@ -28,6 +24,7 @@
           <el-date-picker
             v-model="searchInfo.startCreatedAt"
             type="datetime"
+            size="small"
             placeholder="开始日期"
             :disabled-date="time=> searchInfo.endCreatedAt ? time.getTime() > searchInfo.endCreatedAt.getTime() : false"
           />
@@ -35,17 +32,20 @@
           <el-date-picker
             v-model="searchInfo.endCreatedAt"
             type="datetime"
+            size="small"
             placeholder="结束日期"
             :disabled-date="time=> searchInfo.startCreatedAt ? time.getTime() < searchInfo.startCreatedAt.getTime() : false"
           />
-        </el-form-item>
+        </el-form-item> -->
         <el-form-item
           label="模板名称"
           prop="name"
         >
           <el-input
             v-model="searchInfo.name"
-            placeholder="搜索条件"
+            size="small"
+            class="w-28"
+            placeholder=""
           />
 
         </el-form-item>
@@ -55,7 +55,9 @@
         >
           <el-input
             v-model="searchInfo.tableName"
-            placeholder="搜索条件"
+            size="small"
+            class="w-28"
+            placeholder=""
           />
 
         </el-form-item>
@@ -65,7 +67,9 @@
         >
           <el-input
             v-model="searchInfo.templateID"
-            placeholder="搜索条件"
+            size="small"
+            class="w-28"
+            placeholder=""
           />
 
         </el-form-item>
@@ -73,10 +77,12 @@
           <el-button
             type="primary"
             icon="search"
+            size="small"
             @click="onSubmit"
           >查询</el-button>
           <el-button
             icon="refresh"
+            size="small"
             @click="onReset"
           >重置</el-button>
         </el-form-item>
@@ -87,11 +93,13 @@
         <el-button
           type="primary"
           icon="plus"
+          size="small"
           @click="openDialog"
         >新增</el-button>
 
         <el-button
           icon="delete"
+          size="small"
           style="margin-left: 10px;"
           :disabled="!multipleSelection.length"
           @click="onDelete"
@@ -160,6 +168,7 @@
               type="primary"
               link
               icon="edit"
+              size="small"
               class="table-button"
               @click="updateSysExportTemplateFunc(scope.row)"
             >变更</el-button>
@@ -167,6 +176,7 @@
               type="primary"
               link
               icon="delete"
+              size="small"
               @click="deleteRow(scope.row)"
             >删除</el-button>
           </template>
@@ -174,11 +184,12 @@
       </el-table>
       <div class="gva-pagination">
         <el-pagination
-          layout="total, sizes, prev, pager, next, jumper"
+          layout="total, sizes, prev, pager, next"
           :current-page="page"
           :page-size="pageSize"
           :page-sizes="[10, 30, 50, 100]"
           :total="total"
+          small
           @current-change="handleCurrentChange"
           @size-change="handleSizeChange"
         />
@@ -193,14 +204,18 @@
       destroy-on-close
     >
 
-      <template #title>
-        <div class="flex justify-between items-center">
-          <span class="text-lg">{{type==='create'?'添加':'修改'}}</span>
+      <template #header>
+        <div class="flex items-center justify-between">
+          <span class="text-lg">{{ type==='create'?'添加':'修改' }}</span>
           <div>
-            <el-button @click="closeDialog">取 消</el-button>
             <el-button
-                type="primary"
-                @click="enterDialog"
+              size="small"
+              @click="closeDialog"
+            >取 消</el-button>
+            <el-button
+              size="small"
+              type="primary"
+              @click="enterDialog"
             >确 定</el-button>
           </div>
         </div>
@@ -313,7 +328,7 @@
           <div
             v-for="(condition,key) in formData.conditions"
             :key="key"
-            class="flex gap-4 w-full mb-2"
+            class="flex w-full gap-4 mb-2"
           >
             <el-input
               v-model="condition.from"
@@ -337,6 +352,7 @@
             <el-button
               type="danger"
               icon="delete"
+              size="small"
               @click="() => formData.conditions.splice(key, 1)"
             >删除</el-button>
           </div>
@@ -344,6 +360,7 @@
             <el-button
               type="primary"
               icon="plus"
+              size="small"
               @click="addCondition"
             >添加条件</el-button>
           </div>

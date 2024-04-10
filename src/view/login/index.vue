@@ -81,7 +81,7 @@
                 <el-button
                   class="w-full shadow shadow-blue-600 h-11"
                   type="primary"
-                  size="large"
+                  size="small"
                   @click="submitForm"
                 >登 录</el-button>
               </el-form-item>
@@ -89,7 +89,7 @@
                 <el-button
                   class="w-full shadow shadow-blue-600 h-11"
                   type="primary"
-                  size="large"
+                  size="small"
                   @click="checkInit"
                 >前往初始化</el-button>
 

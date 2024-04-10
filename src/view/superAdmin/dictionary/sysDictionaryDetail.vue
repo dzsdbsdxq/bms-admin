@@ -1,11 +1,12 @@
 <template>
   <div>
     <div class="gva-table-box">
-      <div class="gva-btn-list justify-between">
-        <span class="text font-bold">字典详细内容</span>
+      <div class="justify-between gva-btn-list">
+        <span class="font-bold text">字典详细内容</span>
         <el-button
           type="primary"
           icon="plus"
+          size="small"
           @click="openDialog"
         >新增字典项</el-button>
       </div>
@@ -72,12 +73,14 @@
               type="primary"
               link
               icon="edit"
+              size="small"
               @click="updateSysDictionaryDetailFunc(scope.row)"
             >变更</el-button>
             <el-button
               type="primary"
               link
               icon="delete"
+              size="small"
               @click="deleteSysDictionaryDetailFunc(scope.row)"
             >删除</el-button>
           </template>
@@ -90,7 +93,8 @@
           :page-size="pageSize"
           :page-sizes="[10, 30, 50, 100]"
           :total="total"
-          layout="total, sizes, prev, pager, next, jumper"
+          small
+          layout="total, sizes, prev, pager, next"
           @current-change="handleCurrentChange"
           @size-change="handleSizeChange"
         />
@@ -164,8 +168,12 @@
       </el-form>
       <template #footer>
         <div class="dialog-footer">
-          <el-button @click="closeDialog">取 消</el-button>
           <el-button
+            size="small"
+            @click="closeDialog"
+          >取 消</el-button>
+          <el-button
+            size="small"
             type="primary"
             @click="enterDialog"
           >确 定</el-button>

@@ -23,6 +23,7 @@
         <el-button
           type="primary"
           icon="search"
+          size="small"
           @click="getTableData"
         >查询</el-button>
       </div>
@@ -93,12 +94,14 @@
             <el-button
               icon="download"
               type="primary"
+              size="small"
               link
               @click="downloadFile(scope.row)"
             >下载</el-button>
             <el-button
               icon="delete"
               type="primary"
+              size="small"
               link
               @click="deleteFileFunc(scope.row)"
             >删除</el-button>
@@ -112,7 +115,8 @@
           :page-sizes="[10, 30, 50, 100]"
           :style="{ float: 'right', padding: '20px' }"
           :total="total"
-          layout="total, sizes, prev, pager, next, jumper"
+          small
+          layout="total, sizes, prev, pager, next"
           @current-change="handleCurrentChange"
           @size-change="handleSizeChange"
         />

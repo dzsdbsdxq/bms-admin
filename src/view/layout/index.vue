@@ -180,7 +180,6 @@
           </div>
         </router-view>
         <BottomInfo />
-        <setting />
         <CommandMenu ref="command" />
       </el-main>
     </el-container>
@@ -195,7 +194,6 @@ import Search from '@/view/layout/search/search.vue'
 import BottomInfo from '@/view/layout/bottomInfo/bottomInfo.vue'
 import CustomPic from '@/components/customPic/index.vue'
 import CommandMenu from '@/components/commandMenu/index.vue'
-import Setting from './setting/index.vue'
 import { setUserAuthority } from '@/api/user'
 import { emitter } from '@/utils/bus.js'
 import { computed, ref, onMounted, nextTick } from 'vue'

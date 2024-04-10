@@ -33,7 +33,10 @@
 
     <template #footer>
       <span class="dialog-footer">
-        <el-button @click="close">关闭</el-button>
+        <el-button
+          size="small"
+          @click="close"
+        >关闭</el-button>
       </span>
     </template>
   </el-dialog>

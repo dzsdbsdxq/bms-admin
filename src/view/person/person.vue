@@ -1,9 +1,9 @@
 <template>
   <div>
-    <div class="grid grid-cols-12 w-full gap-2">
-      <div class="col-span-3 h-full">
-        <div class="w-full h-full bg-white px-4 py-8 rounded-lg shadow-lg box-border">
-          <div class="user-card px-6 text-center bg-white shrink-0">
+    <div class="grid w-full grid-cols-12 gap-2">
+      <div class="h-full col-span-3">
+        <div class="box-border w-full h-full px-4 py-8 bg-white rounded-lg shadow-lg">
+          <div class="px-6 text-center bg-white user-card shrink-0">
             <div class="flex justify-center">
               <SelectImage
                 v-model="userStore.userInfo.headerImg"
@@ -13,11 +13,11 @@
             <div class="py-6 text-center">
               <p
                 v-if="!editFlag"
-                class="text-3xl flex justify-center items-center gap-4"
+                class="flex items-center justify-center gap-4 text-3xl"
               >
                 {{ userStore.userInfo.nickName }}
                 <el-icon
-                  class="cursor-pointer text-sm"
+                  class="text-sm cursor-pointer"
                   color="#66b1ff"
                   @click="openEdit"
                 >
@@ -26,7 +26,7 @@
               </p>
               <p
                 v-if="editFlag"
-                class="flex justify-center items-center gap-4"
+                class="flex items-center justify-center gap-4"
               >
                 <el-input v-model="nickName" />
                 <el-icon
@@ -44,10 +44,10 @@
                   <close />
                 </el-icon>
               </p>
-              <p class="text-gray-500 mt-2 text-md">这个家伙很懒，什么都没有留下</p>
+              <p class="mt-2 text-gray-500 text-md">这个家伙很懒，什么都没有留下</p>
             </div>
             <div class="w-full h-full text-left">
-              <ul class="inline-block h-full w-full">
+              <ul class="inline-block w-full h-full">
                 <li class="info-list">
                   <el-icon>
                     <user />
@@ -92,7 +92,7 @@
         </div>
       </div>
       <div class="col-span-9 ">
-        <div class="bg-white h-full px-4 py-8 rounded-lg shadow-lg box-border">
+        <div class="box-border h-full px-4 py-8 bg-white rounded-lg shadow-lg">
           <el-tabs
             v-model="activeName"
             @tab-click="handleClick"
@@ -198,11 +198,11 @@
       <template #footer>
         <div class="dialog-footer">
           <el-button
-
+            size="small"
             @click="showPassword = false"
           >取 消</el-button>
           <el-button
-
+            size="small"
             type="primary"
             @click="savePassword"
           >确 定</el-button>
@@ -240,6 +240,7 @@
             />
             <el-button
               type="primary"
+              size="small"
               :disabled="time>0"
               @click="getCode"
             >{{ time>0?`(${time}s)后重新获取`:'获取验证码' }}</el-button>
@@ -249,12 +250,12 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button
-
+            size="small"
             @click="closeChangePhone"
           >取消</el-button>
           <el-button
             type="primary"
-
+            size="small"
             @click="changePhone"
           >更改</el-button>
         </span>
@@ -290,6 +291,7 @@
               style="width:300px"
             />
             <el-button
+              size="small"
               type="primary"
               :disabled="emailTime>0"
               @click="getEmailCode"
@@ -300,12 +302,12 @@
       <template #footer>
         <span class="dialog-footer">
           <el-button
-
+            size="small"
             @click="closeChangeEmail"
           >取消</el-button>
           <el-button
             type="primary"
-
+            size="small"
             @click="changeEmail"
           >更改</el-button>
         </span>
