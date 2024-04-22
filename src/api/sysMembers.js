@@ -95,3 +95,26 @@ export const getSysMembersList = (params) => {
     params
   })
 }
+
+export const resetMemberPassword = (data) => {
+  return service({
+    url: '/sysMembers/resetPassword',
+    method: 'post',
+    data: data
+  })
+}
+// @Tags SysMembers
+// @Summary 积分更改
+// @Security ApiKeyAuth
+// @accept application/json
+// @Produce application/json
+// @Param data
+// @Success 200 {string} string "{"success":true,"data":{},"msg":"更改成功"}"
+// @Router /sysMembers/scoreUpdate [post]
+export const scoreUpdate = (data) => {
+  return service({
+    url: '/sysMembers/scoreUpdate',
+    method: 'post',
+    data: data
+  })
+}

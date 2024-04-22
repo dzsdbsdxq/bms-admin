@@ -364,7 +364,7 @@
         </el-form-item>
       </el-form>
       <div>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 mt-2">
           <el-button
             type="primary"
             icon="edit"

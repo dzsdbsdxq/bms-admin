@@ -20,7 +20,6 @@
 import ImageCompress from '@/utils/image'
 import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
-import { useUserStore } from '@/pinia/modules/user'
 
 defineOptions({
   name: 'UploadImage',
@@ -43,8 +42,6 @@ const props = defineProps({
 })
 
 const path = ref(import.meta.env.VITE_BASE_API)
-
-const userStore = useUserStore()
 
 const beforeImageUpload = (file) => {
   const isJPG = file.type === 'image/jpeg'

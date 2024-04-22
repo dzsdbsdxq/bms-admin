@@ -11,7 +11,7 @@
       </div>
       <el-table
         :data="tableData"
-        :border="true"
+        :border="false"
         size="small"
         row-key="ID"
       >

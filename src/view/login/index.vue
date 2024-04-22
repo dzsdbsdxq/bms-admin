@@ -8,7 +8,7 @@
     >
       <div class="flex items-center h-full w-12/12 md:w-3/5 justify-evenly">
         <!-- 分割斜块 -->
-        <div class="z-[999] pt-12 pb-10 md:w-96 w-full  rounded-lg flex flex-col justify-between box-border">
+        <div class="z-[999] pb-10 md:w-96 w-full  rounded-lg flex flex-col justify-between box-border">
           <div>
             <div class="flex items-center justify-center">
 

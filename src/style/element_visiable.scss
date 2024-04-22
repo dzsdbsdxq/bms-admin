@@ -58,7 +58,11 @@
         td {
             @apply px-0;
             .cell {
-                @apply leading-[35px] text-gray-600 text-sm;
+                @apply leading-[35px] text-gray-600 text-sm flex flex-wrap justify-start items-center;
+                .el-dropdown {
+                    @apply ml-5;
+                }
+
             }
         }
         .is-leaf {

@@ -33,7 +33,7 @@ const fullscreenLoading = ref(false)
 
 const checkFile = (file) => {
   fullscreenLoading.value = true
-  const isLt500K = file.size / 1024 / 1024 < 0.5 // 500K, @todo 应支持在项目中设置
+  const isLt500K = file.size / 1024 / 1024 < 5 // 500K, @todo 应支持在项目中设置
   const isLt5M = file.size / 1024 / 1024 < 5 // 5MB, @todo 应支持项目中设置
   const isVideo = isVideoMime(file.type)
   const isImage = isImageMime(file.type)

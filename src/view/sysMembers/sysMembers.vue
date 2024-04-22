@@ -49,7 +49,7 @@
         >新增</el-button>
         <el-button
           icon="delete"
-          style="margin-left: 10px;"
+          style="margin-left: 10px"
           size="small"
           :disabled="!multipleSelection.length"
           @click="onDelete"
@@ -93,40 +93,11 @@
         >
           <template #default="scope">
             <CustomPic
-              style="justify-content: start;"
+              style="justify-content: start"
               :pic-src="scope.row.headerImg"
             />
           </template>
         </el-table-column>
-        <el-table-column
-          align="left"
-          label="性别"
-          width="120"
-        >
-          <template #default="scope">
-            <el-tag
-              v-if="scope.row.gender == 1"
-              type="success"
-            >男</el-tag>
-            <el-tag
-              v-else
-              type="info"
-            >女</el-tag>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="left"
-          label="年龄"
-          prop="age"
-          width="80"
-        />
-        <el-table-column
-          align="left"
-          label="openid"
-          prop="openid"
-          :show-overflow-tooltip="true"
-          width="120"
-        />
         <el-table-column
           align="left"
           label="积分"
@@ -155,25 +126,30 @@
             <el-tag
               v-if="scope.row.emailVerified"
               type="success"
-            >{{ formatBoolean(scope.row.emailVerified) }}</el-tag>
+            >{{
+              formatBoolean(scope.row.emailVerified)
+            }}</el-tag>
             <el-tag
               v-else
               type="info"
-            >{{ formatBoolean(scope.row.emailVerified) }}</el-tag>
-
+            >{{
+              formatBoolean(scope.row.emailVerified)
+            }}</el-tag>
           </template>
         </el-table-column>
         <el-table-column
-          label="启用"
+          label="状态"
           width="120"
         >
           <template #default="scope">
-            <el-switch
-              v-model="scope.row.enable"
-              inline-prompt
-              :active-value="1"
-              :inactive-value="2"
-            />
+            <el-tag
+              v-if="scope.row.enable == 1"
+              type="success"
+            >正常</el-tag>
+            <el-tag
+              v-else
+              type="danger"
+            >冻结</el-tag>
           </template>
         </el-table-column>
         <el-table-column
@@ -187,7 +163,7 @@
           align="left"
           label="操作"
           fixed="right"
-          min-width="240"
+          min-width="250"
         >
           <template #default="scope">
             <el-button
@@ -206,12 +182,41 @@
               class="table-button"
               @click="updateSysMembersFunc(scope.row)"
             >变更</el-button>
-            <el-button
-              type="primary"
-              link
-              icon="delete"
-              @click="deleteRow(scope.row)"
-            >删除</el-button>
+            <el-dropdown>
+              <el-button
+                type="primary"
+                link
+                icon="menu"
+              >更多</el-button>
+              <template #dropdown>
+                <el-dropdown-menu>
+                  <el-dropdown-item>
+                    <el-button
+                      type="primary"
+                      link
+                      icon="lock"
+                      @click="resetPasswordFunc(scope.row)"
+                    >重置密码</el-button>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+                    <el-button
+                      type="primary"
+                      link
+                      icon="coin"
+                      @click="updateScoreFunc(scope.row)"
+                    >积分变更</el-button>
+                  </el-dropdown-item>
+                  <el-dropdown-item>
+                    <el-button
+                      type="primary"
+                      link
+                      icon="delete"
+                      @click="deleteRow(scope.row)"
+                    >删除</el-button>
+                  </el-dropdown-item>
+                </el-dropdown-menu>
+              </template>
+            </el-dropdown>
           </template>
         </el-table-column>
       </el-table>
@@ -236,13 +241,17 @@
     >
       <template #header>
         <div class="flex items-center justify-between">
-          <span class="text-lg">{{ type==='create'?'添加':'修改' }}</span>
+          <span class="text-lg">{{ type === "create" ? "添加" : "修改" }}</span>
           <div>
             <el-button
               type="primary"
+              size="small"
               @click="enterDialog"
             >确 定</el-button>
-            <el-button @click="closeDialog">取 消</el-button>
+            <el-button
+              size="small"
+              @click="closeDialog"
+            >取 消</el-button>
           </div>
         </div>
       </template>
@@ -255,16 +264,6 @@
         label-width="80px"
       >
         <el-form-item
-          label="用户UUID:"
-          prop="uuid"
-        >
-          <el-input
-            v-model="formData.uuid"
-            :clearable="true"
-            placeholder="请输入用户UUID"
-          />
-        </el-form-item>
-        <el-form-item
           label="用户名:"
           prop="username"
         >
@@ -275,45 +274,56 @@
           />
         </el-form-item>
         <el-form-item
-          label="用户密码:"
-          prop="password"
-        >
-          <el-input
-            v-model="formData.password"
-            :clearable="true"
-            placeholder="请输入用户密码"
-          />
-        </el-form-item>
-        <el-form-item
-          label="用户昵称:"
+          label="昵称:"
           prop="nickName"
         >
           <el-input
             v-model="formData.nickName"
             :clearable="true"
-            placeholder="请输入用户昵称"
+            placeholder="请输入昵称"
           />
         </el-form-item>
         <el-form-item
           label="用户头像:"
           prop="avatar"
         >
-          <el-input
-            v-model="formData.avatar"
-            :clearable="true"
-            placeholder="请输入用户头像"
-          />
+          <div
+            style="display: inline-block"
+            @click="openHeaderChange"
+          >
+            <img
+              v-if="formData.avatar"
+              alt="头像"
+              class="header-img-box"
+              :src="
+                formData.avatar && formData.avatar.slice(0, 4) !== 'http'
+                  ? path + formData.avatar
+                  : formData.avatar
+              "
+            >
+            <div
+              v-else
+              class="header-img-box"
+            >从媒体库选择</div>
+            <ChooseImg
+              ref="chooseImg"
+              :target="formData"
+              :target-key="`avatar`"
+            />
+          </div>
         </el-form-item>
         <el-form-item
-          label="性别(1=男，2=女):"
+          label="性别:"
           prop="gender"
         >
           <el-switch
             v-model="formData.gender"
             active-color="#13ce66"
             inactive-color="#ff4949"
-            active-text="是"
-            inactive-text="否"
+            :active-value="1"
+            :inactive-value="2"
+            :active-text="`男`"
+            :inactive-text="`女`"
             clearable
           />
         </el-form-item>
@@ -321,13 +331,11 @@
           label="年龄:"
           prop="age"
         >
-          <el-switch
+          <el-input
             v-model="formData.age"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            active-text="是"
-            inactive-text="否"
-            clearable
+            type="number"
+            :clearable="true"
+            placeholder="请输入年龄"
           />
         </el-form-item>
         <el-form-item
@@ -337,59 +345,9 @@
           <el-date-picker
             v-model="formData.birthday"
             type="date"
-            style="width:100%"
+            style="width: 100%"
             placeholder="选择日期"
             :clearable="true"
-          />
-        </el-form-item>
-        <el-form-item
-          label="背景图:"
-          prop="bgImage"
-        >
-          <el-input
-            v-model="formData.bgImage"
-            :clearable="true"
-            placeholder="请输入背景图"
-          />
-        </el-form-item>
-        <el-form-item
-          label="openid:"
-          prop="openid"
-        >
-          <el-input
-            v-model="formData.openid"
-            :clearable="true"
-            placeholder="请输入openid"
-          />
-        </el-form-item>
-        <el-form-item
-          label="用户注册来源:"
-          prop="platform"
-        >
-          <el-input
-            v-model.number="formData.platform"
-            :clearable="true"
-            placeholder="请输入用户注册来源"
-          />
-        </el-form-item>
-        <el-form-item
-          label="用户项目来源:"
-          prop="project"
-        >
-          <el-input
-            v-model="formData.project"
-            :clearable="true"
-            placeholder="请输入用户项目来源"
-          />
-        </el-form-item>
-        <el-form-item
-          label="积分:"
-          prop="score"
-        >
-          <el-input
-            v-model.number="formData.score"
-            :clearable="true"
-            placeholder="请输入积分"
           />
         </el-form-item>
         <el-form-item
@@ -413,31 +371,22 @@
           />
         </el-form-item>
         <el-form-item
-          label="邮箱是否验证:"
-          prop="emailVerified"
-        >
-          <el-switch
-            v-model="formData.emailVerified"
-            active-color="#13ce66"
-            inactive-color="#ff4949"
-            active-text="是"
-            inactive-text="否"
-            clearable
-          />
-        </el-form-item>
-        <el-form-item
-          label="用户是否被冻结 1正常 2冻结:"
+          label="用户是否被冻结:"
           prop="enable"
         >
-          <el-input
-            v-model.number="formData.enable"
-            :clearable="true"
-            placeholder="请输入用户是否被冻结 1正常 2冻结"
+          <el-switch
+            v-model="formData.enable"
+            active-color="#13ce66"
+            inactive-color="#ff4949"
+            :active-value="1"
+            :inactive-value="2"
+            active-text="否"
+            inactive-text="是"
+            clearable
           />
         </el-form-item>
       </el-form>
     </el-drawer>
-
     <el-drawer
       v-model="detailShow"
       size="800"
@@ -454,32 +403,46 @@
         :column="1"
         border
       >
-        <el-descriptions-item label="用户UUID">
+        <el-descriptions-item label="UID">
+          {{ formData.ID }}
+        </el-descriptions-item>
+        <el-descriptions-item label="UUID">
           {{ formData.uuid }}
         </el-descriptions-item>
         <el-descriptions-item label="用户名">
           {{ formData.username }}
         </el-descriptions-item>
-        <el-descriptions-item label="用户密码">
-          {{ formData.password }}
-        </el-descriptions-item>
         <el-descriptions-item label="用户昵称">
           {{ formData.nickName }}
         </el-descriptions-item>
         <el-descriptions-item label="用户头像">
-          {{ formData.avatar }}
+          <CustomPic
+            style="justify-content: start"
+            :pic-src="formData.avatar"
+          />
         </el-descriptions-item>
-        <el-descriptions-item label="性别(1=男，2=女)">
-          {{ formatBoolean(formData.gender) }}
+        <el-descriptions-item label="性别">
+          <el-tag
+            v-if="formData.gender == 1"
+            type="success"
+          >男</el-tag>
+          <el-tag
+            v-else
+            type="info"
+          >女</el-tag>
         </el-descriptions-item>
         <el-descriptions-item label="年龄">
-          {{ formatBoolean(formData.age) }}
+          {{ formData.age }}
         </el-descriptions-item>
         <el-descriptions-item label="生日">
           {{ formatDate(formData.birthday) }}
         </el-descriptions-item>
         <el-descriptions-item label="背景图">
-          {{ formData.bgImage }}
+          <CustomPic
+            :pic-type="`img`"
+            style="justify-content: start"
+            :pic-src="formData.bgImage"
+          />
         </el-descriptions-item>
         <el-descriptions-item label="openid">
           {{ formData.openid }}
@@ -500,13 +463,73 @@
           {{ formData.email }}
         </el-descriptions-item>
         <el-descriptions-item label="邮箱是否验证">
-          {{ formatBoolean(formData.emailVerified) }}
+          <el-tag
+            v-if="formData.emailVerified == 1"
+            type="success"
+          >是</el-tag>
+          <el-tag
+            v-else
+            type="danger"
+          >否</el-tag>
         </el-descriptions-item>
-        <el-descriptions-item label="用户是否被冻结 1正常 2冻结">
-          {{ formData.enable }}
+        <el-descriptions-item label="用户是否被冻结">
+          <el-tag
+            v-if="formData.enable == 1"
+            type="success"
+          >正常</el-tag>
+          <el-tag
+            v-else
+            type="danger"
+          >冻结</el-tag>
         </el-descriptions-item>
       </el-descriptions>
     </el-drawer>
+    <el-dialog
+      v-model="dialogScoreVisible"
+      :before-close="closeScoreDialog"
+      :title="scoreForm.title"
+      width="30%"
+    >
+      <el-form
+        :inline="false"
+        :model="scoreForm"
+        label-width="80px"
+      >
+        <el-form-item label="操作类型">
+          <el-radio-group v-model="scoreForm.optionType">
+            <el-radio :value="1">增加</el-radio>
+            <el-radio :value="2">减少</el-radio>
+          </el-radio-group>
+        </el-form-item>
+        <el-form-item label="积分数量">
+          <el-input
+            v-model="scoreForm.scoreValue"
+            autocomplete="off"
+            type="number"
+          />
+        </el-form-item>
+        <el-form-item label="描述">
+          <el-input
+            v-model="scoreForm.desc"
+            type="textarea"
+            autocomplete="off"
+          />
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <div class="dialog-footer">
+          <el-button
+            size="small"
+            @click="closeScoreDialog"
+          >取 消</el-button>
+          <el-button
+            type="primary"
+            size="small"
+            @click="enterScoreSubmitFunc"
+          >确 定</el-button>
+        </div>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
@@ -517,17 +540,72 @@ import {
   deleteSysMembersByIds,
   updateSysMembers,
   findSysMembers,
-  getSysMembersList
+  getSysMembersList,
+  resetMemberPassword,
+  scoreUpdate
 } from '@/api/sysMembers'
 import CustomPic from '@/components/customPic/index.vue'
+import ChooseImg from '@/components/chooseImg/index.vue'
 // 全量引入格式化工具 请按需保留
 import { formatDate, formatBoolean } from '@/utils/format'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref, reactive } from 'vue'
 
 defineOptions({
-  name: 'SysMembers'
+  name: 'SysMembers',
 })
+// 积分变更弹框控制
+const dialogScoreVisible = ref(false)
+
+const scoreForm = ref({
+  title: '',
+  memberId: 0,
+  optionType: 1, // 1=增加，2=减少
+  scoreType: 'system', // 类型，系统操作
+  scoreValue: 0, // 积分数量
+  desc: '', // 描述
+})
+const updateScoreFunc = (row) => {
+  scoreForm.value.title = `对用户【${row.username}】的积分变更`
+  scoreForm.value.memberId = row.ID
+  dialogScoreVisible.value = true
+}
+const closeScoreDialog = () => {
+  scoreForm.value.title = ``
+  scoreForm.value = {
+    title: '',
+    memberId: 0,
+    optionType: 1,
+    scoreType: 'system',
+    scoreValue: 0,
+    desc: '',
+  }
+  dialogScoreVisible.value = false
+}
+const enterScoreSubmitFunc = () => {
+  ElMessageBox.confirm('确定要积分变更吗?', '提示', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  }).then(async() => {
+    scoreForm.value.scoreValue = parseInt(scoreForm.value.scoreValue)
+    const data = await scoreUpdate(scoreForm.value)
+    console.log(data)
+    if (data.code === 0) {
+      ElMessage({
+        type: 'success',
+        message: '变更成功',
+      })
+      getTableData()
+    } else {
+      ElMessage({
+        type: 'error',
+        message: data.msg,
+      })
+    }
+    // deleteSysMembersFunc(row)
+  })
+}
 
 // 自动化生成的字典（可能为空）以及字段
 const formData = ref({
@@ -536,8 +614,8 @@ const formData = ref({
   password: '',
   nickName: '',
   avatar: '',
-  gender: false,
-  age: false,
+  gender: 1,
+  age: 0,
   birthday: new Date(),
   bgImage: '',
   openid: '',
@@ -551,22 +629,31 @@ const formData = ref({
 })
 
 // 验证规则
-const rule = reactive({
-})
+const rule = reactive({})
 
 const searchRule = reactive({
   createdAt: [
-    { validator: (rule, value, callback) => {
-      if (searchInfo.value.startCreatedAt && !searchInfo.value.endCreatedAt) {
-        callback(new Error('请填写结束日期'))
-      } else if (!searchInfo.value.startCreatedAt && searchInfo.value.endCreatedAt) {
-        callback(new Error('请填写开始日期'))
-      } else if (searchInfo.value.startCreatedAt && searchInfo.value.endCreatedAt && (searchInfo.value.startCreatedAt.getTime() === searchInfo.value.endCreatedAt.getTime() || searchInfo.value.startCreatedAt.getTime() > searchInfo.value.endCreatedAt.getTime())) {
-        callback(new Error('开始日期应当早于结束日期'))
-      } else {
-        callback()
-      }
-    }, trigger: 'change' }
+    {
+      validator: (rule, value, callback) => {
+        if (searchInfo.value.startCreatedAt && !searchInfo.value.endCreatedAt) {
+          callback(new Error('请填写结束日期'))
+        } else if (!searchInfo.value.startCreatedAt && searchInfo.value.endCreatedAt) {
+          callback(new Error('请填写开始日期'))
+        } else if (
+          searchInfo.value.startCreatedAt &&
+          searchInfo.value.endCreatedAt &&
+          (searchInfo.value.startCreael - dialogTime() ===
+            searchInfo.value.endCreatedAt.getTime() ||
+            searchInfo.value.startCreatedAt.getTime() >
+              searchInfo.value.endCreatedAt.getTime())
+        ) {
+          callback(new Error('开始日期应当早于结束日期'))
+        } else {
+          callback()
+        }
+      },
+      trigger: 'change',
+    },
   ],
 })
 
@@ -619,9 +706,12 @@ const handleCurrentChange = (val) => {
 
 // 查询
 const getTableData = async() => {
-  const table = await getSysMembersList({ page: page.value, pageSize: pageSize.value, ...searchInfo.value })
+  const table = await getSysMembersList({
+    page: page.value,
+    pageSize: pageSize.value,
+    ...searchInfo.value,
+  })
   if (table.code === 0) {
-    console.log(table.data.list)
     tableData.value = table.data.list
     total.value = table.data.total
     page.value = table.data.page
@@ -634,8 +724,7 @@ getTableData()
 // ============== 表格控制部分结束 ===============
 
 // 获取需要的字典 可能为空 按需保留
-const setOptions = async() => {
-}
+const setOptions = async() => {}
 
 // 获取需要的字典 可能为空 按需保留
 setOptions()
@@ -652,7 +741,7 @@ const deleteRow = (row) => {
   ElMessageBox.confirm('确定要删除吗?', '提示', {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
-    type: 'warning'
+    type: 'warning',
   }).then(() => {
     deleteSysMembersFunc(row)
   })
@@ -663,30 +752,53 @@ const onDelete = async() => {
   ElMessageBox.confirm('确定要删除吗?', '提示', {
     confirmButtonText: '确定',
     cancelButtonText: '取消',
-    type: 'warning'
+    type: 'warning',
   }).then(async() => {
     const IDs = []
     if (multipleSelection.value.length === 0) {
       ElMessage({
         type: 'warning',
-        message: '请选择要删除的数据'
+        message: '请选择要删除的数据',
       })
       return
     }
     multipleSelection.value &&
-        multipleSelection.value.map(item => {
-          IDs.push(item.ID)
-        })
+      multipleSelection.value.map((item) => {
+        IDs.push(item.ID)
+      })
     const res = await deleteSysMembersByIds({ IDs })
     if (res.code === 0) {
       ElMessage({
         type: 'success',
-        message: '删除成功'
+        message: '删除成功',
       })
       if (tableData.value.length === IDs.length && page.value > 1) {
         page.value--
       }
       getTableData()
+    }
+  })
+}
+// 重置密码
+const resetPasswordFunc = (row) => {
+  ElMessageBox.confirm('是否将此用户密码重置为123456?', '警告', {
+    confirmButtonText: '确定',
+    cancelButtonText: '取消',
+    type: 'warning',
+  }).then(async() => {
+    const res = await resetMemberPassword({
+      ID: row.ID,
+    })
+    if (res.code === 0) {
+      ElMessage({
+        type: 'success',
+        message: res.msg,
+      })
+    } else {
+      ElMessage({
+        type: 'error',
+        message: res.msg,
+      })
     }
   })
 }
@@ -710,7 +822,7 @@ const deleteSysMembersFunc = async(row) => {
   if (res.code === 0) {
     ElMessage({
       type: 'success',
-      message: '删除成功'
+      message: '删除成功',
     })
     if (tableData.value.length === 1 && page.value > 1) {
       page.value--
@@ -749,8 +861,8 @@ const closeDetailShow = () => {
     password: '',
     nickName: '',
     avatar: '',
-    gender: false,
-    age: false,
+    gender: 1,
+    age: 0,
     birthday: new Date(),
     bgImage: '',
     openid: '',
@@ -779,8 +891,8 @@ const closeDialog = () => {
     password: '',
     nickName: '',
     avatar: '',
-    gender: false,
-    age: false,
+    gender: 1,
+    age: 0,
     birthday: new Date(),
     bgImage: '',
     openid: '',
@@ -798,6 +910,7 @@ const enterDialog = async() => {
   elFormRef.value?.validate(async(valid) => {
     if (!valid) return
     let res
+    formData.value.age = parseInt(formData.value.age)
     switch (type.value) {
       case 'create':
         res = await createSysMembers(formData.value)
@@ -812,16 +925,18 @@ const enterDialog = async() => {
     if (res.code === 0) {
       ElMessage({
         type: 'success',
-        message: '创建/更改成功'
+        message: '创建/更改成功',
       })
       closeDialog()
       getTableData()
     }
   })
 }
-
+/** 头像上传 */
+const chooseImg = ref(null)
+const openHeaderChange = () => {
+  chooseImg.value.open()
+}
 </script>
 
-<style>
-
-</style>
+<style></style>

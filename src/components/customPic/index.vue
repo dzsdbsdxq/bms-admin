@@ -89,12 +89,16 @@ const previewSrcList = computed(() => props.preview ? [file.value] : [])
 
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .headerAvatar{
     display: flex;
     justify-content: center;
     align-items: center;
     margin-right: 8px;
+    .avatar {
+      width: 100%;
+      height: 100%;
+    }
 }
 .file{
     width: 80px;

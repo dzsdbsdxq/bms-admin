@@ -4,7 +4,7 @@ import Logo from '@/assets/logo.png'
  */
 
 const config = {
-  appName: 'BMS',
+  appName: 'MS',
   appLogo: Logo,
   showViteLogo: false,
   logs: [],
