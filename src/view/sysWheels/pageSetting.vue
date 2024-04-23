@@ -20,16 +20,13 @@
                 :rules="rule"
                 label-width="auto"
               >
-                <el-descriptions
-                  direction="horizontal"
-                  :column="2"
-                  size="small"
-                  border
+                <el-collapse
+                  v-model="wheelActiveName"
+                  accordion
                 >
-                  <el-descriptions-item
-                    label="背景图"
-                    :span="2"
-                    width="80px"
+                  <el-collapse-item
+                    title="转盘背景图"
+                    name="1"
                   >
                     <el-row>
                       <el-col
@@ -78,76 +75,119 @@
                       </el-col>
                     </el-row>
 
-                  </el-descriptions-item>
-                  <el-descriptions-item
-                    label="奖项设置"
-                    :span="2"
+                  </el-collapse-item>
+                  <el-collapse-item
+                    name="2"
+                    title="奖项设置"
                   >
-                    <el-tabs
-                      v-model="prizesActiveName"
-                      tab-position="left"
+                    <el-card
+                      v-for="(prize,index) in generatePrizeForm"
+                      :key="index"
+                      shadow="hover"
+                      class="prizeSettingBox"
+                      :body-style="{padding:'10px',}"
+                      style="margin-bottom: 10px;"
                     >
-                      <el-tab-pane
-                        v-for="(prize,index) in generatePrizeForm"
-                        :key="index"
-                        :label="prize.text"
-                        :name="`prizes_tab_${index}`"
+                      <template #header>
+                        <div class="flex justify-between card-header">
+                          <span class="flex items-center justify-start">
+                            <el-avatar
+                              :size="20"
+                              style="margin-right: 10px;"
+                              :src="prize.src"
+                            />
+                            奖项{{ index + 1 }}：{{ prize.text }}</span>
+                          <el-button
+                            v-if="index == 0"
+                            size="small"
+                            type="primary"
+                            @click="syncPrizeFunc(index)"
+                          >同步至其他奖项</el-button>
+                        </div>
+                      </template>
+                      <el-descriptions
+                        size="small"
+                        :column="2"
                       >
-                        <el-form-item
-                          label="背景色："
-                        >
+                        <el-descriptions-item label="奖品底板：">
                           <el-input
                             v-model="prize.background"
+                            size="small"
                             style="width:100px;"
-                          />
-                        </el-form-item>
-                        <el-form-item label="图片位置：">
+                          >
+                            <template #append>
+                              <el-color-picker
+                                v-model="prize.background"
+                                size="small"
+                              />
+                            </template>
+
+                          </el-input>
+                        </el-descriptions-item>
+                        <el-descriptions-item label="图片位置：">
                           <el-input
                             v-model="prize.top"
+                            size="small"
                             style="width:100px;"
                           />
-                        </el-form-item>
-                        <el-form-item label="图片宽度：">
+                        </el-descriptions-item>
+                        <el-descriptions-item label="图片宽度：">
                           <el-input
                             v-model="prize.width"
+                            size="small"
                             style="width:100px;"
                           />
-                        </el-form-item>
-                        <el-form-item label="图片高度：">
+                        </el-descriptions-item>
+                        <el-descriptions-item label="图片高度：">
                           <el-input
                             v-model="prize.height"
+                            size="small"
                             style="width:100px;"
                           />
-                        </el-form-item>
-                        <el-form-item label="文字位置：">
+                        </el-descriptions-item>
+                        <el-descriptions-item label="文字位置：">
                           <el-input
                             v-model="prize.textTop"
+                            size="small"
                             style="width:100px;"
                           />
-                        </el-form-item>
-                        <el-form-item label="文字颜色：">
+                        </el-descriptions-item>
+                        <el-descriptions-item label="文字颜色：">
                           <el-input
                             v-model="prize.textColor"
+                            size="small"
                             style="width:100px;"
-                          />
-                        </el-form-item>
-                        <el-form-item label="文字大小：">
+                          >
+                            <template #append>
+                              <el-color-picker
+                                v-model="prize.textColor"
+                                size="small"
+                              />
+                            </template>
+                          </el-input>
+                        </el-descriptions-item>
+                        <el-descriptions-item label="文字大小：">
                           <el-input
                             v-model="prize.textSize"
+                            size="small"
                             style="width:100px;"
                           />
-                        </el-form-item>
-                      </el-tab-pane>
-                    </el-tabs>
-                  </el-descriptions-item>
-                  <el-descriptions-item label="抽奖按钮">
+                        </el-descriptions-item>
+                      </el-descriptions>
+
+                    </el-card>
+                  </el-collapse-item>
+                  <el-collapse-item
+                    name="3"
+                    title="抽奖按钮"
+                  >
                     <el-row>
                       <el-col
                         :span="24"
                         class="flex align-middle justify-evenly"
                       >
                         <div
-                          style="display: inline-block;width:120px;height:120px;"
+                          style="display: inline-block;width:140px;height:160px;"
                           @click="openButtonsHeaderChange()"
                         >
                           <img
@@ -193,9 +233,10 @@
 
                       </el-col>
                     </el-row>
+                  </el-collapse-item>
 
-                  </el-descriptions-item>
-                </el-descriptions>
+                </el-collapse>
+
                 <div style="height:20px" />
                 <el-form-item>
                   <el-button
@@ -333,6 +374,7 @@ import Iphone from '@/assets/iphone.png'
 const rule = reactive({})
 
 const elFormRef = ref()
+const wheelActiveName = ref(1)
 const activeName = ref('first')
 const { proxy } = getCurrentInstance()
 
@@ -366,7 +408,6 @@ const props = defineProps({
     }
   }
 })
-const prizesActiveName = ref(`prizes_tab_0`)
 const generatePrizeForm = ref([])
 const generatePrizeFormFunc = () => {
   // props.pageSetting.lucky.prizes
@@ -386,16 +427,17 @@ const generatePrizeFormFunc = () => {
     // 过滤配置
     const tmpItem = props.pageSetting.lucky.prizes.filter(item => item.id === props.prizes[i].ID)
     if (tmpItem.length > 0) {
-      generatePrizeForm.value[i]['src'] = tmpItem[0]['imgs'][0]['src']
-      generatePrizeForm.value[i]['background'] = tmpItem[0]['background']
-      generatePrizeForm.value[i]['top'] = tmpItem[0]['imgs'][0]['top']
-      generatePrizeForm.value[i]['width'] = tmpItem[0]['imgs'][0]['width']
-      generatePrizeForm.value[i]['height'] = tmpItem[0]['imgs'][0]['height']
-      generatePrizeForm.value[i]['top'] = tmpItem[0]['imgs'][0]['top']
-      generatePrizeForm.value[i]['text'] = tmpItem[0]['fonts'][0]['text']
-      generatePrizeForm.value[i]['textTop'] = tmpItem[0]['fonts'][0]['top']
-      generatePrizeForm.value[i]['textColor'] = tmpItem[0]['fonts'][0]['fontColor']
-      generatePrizeForm.value[i]['textSize'] = tmpItem[0]['fonts'][0]['fontSize']
+      generatePrizeForm.value[i] = {
+        src: tmpItem[0]['imgs'][0]['src'],
+        background: tmpItem[0]['background'],
+        top: tmpItem[0]['imgs'][0]['top'],
+        width: tmpItem[0]['imgs'][0]['width'],
+        height: tmpItem[0]['imgs'][0]['height'],
+        text: tmpItem[0]['fonts'][0]['text'],
+        textTop: tmpItem[0]['fonts'][0]['top'],
+        textColor: tmpItem[0]['fonts'][0]['fontColor'],
+        textSize: tmpItem[0]['fonts'][0]['fontSize']
+      }
     }
   }
 }
@@ -424,6 +466,21 @@ const buttons = ref({
   width: '',
   height: '',
 })
+const syncPrizeFunc = (index) => {
+  for (let i = 0; i < generatePrizeForm.value.length; i++) {
+    if (i !== index) {
+      Object.assign(generatePrizeForm.value[i], {
+        background: generatePrizeForm.value[index].background,
+        top: generatePrizeForm.value[index].top,
+        width: generatePrizeForm.value[index].width,
+        height: generatePrizeForm.value[index].height,
+        textTop: generatePrizeForm.value[index].textTop,
+        textColor: generatePrizeForm.value[index].textColor,
+        textSize: generatePrizeForm.value[index].textSize
+      })
+    }
+  }
+}
 /** 上传弹框 */
 const openHeaderChange = (id) => {
   proxy.$refs[`chooseImg_${id}`][0].open()
