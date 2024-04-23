@@ -114,6 +114,7 @@
                             v-model="prize.background"
                             size="small"
                             style="width:100px;"
+                            class="prizes_text-input"
                           >
                             <template #append>
                               <el-color-picker
@@ -157,6 +158,7 @@
                             v-model="prize.textColor"
                             size="small"
                             style="width:100px;"
+                            class="prizes_text-input"
                           >
                             <template #append>
                               <el-color-picker
@@ -410,7 +412,6 @@ const props = defineProps({
 })
 const generatePrizeForm = ref([])
 const generatePrizeFormFunc = () => {
-  // props.pageSetting.lucky.prizes
   for (let i = 0; i < props.prizes.length; i++) {
     generatePrizeForm.value[i] = {
       id: props.prizes[i].ID,
@@ -424,19 +425,21 @@ const generatePrizeFormFunc = () => {
       textColor: '#000',
       textSize: '22px'
     }
-    // 过滤配置
-    const tmpItem = props.pageSetting.lucky.prizes.filter(item => item.id === props.prizes[i].ID)
-    if (tmpItem.length > 0) {
-      generatePrizeForm.value[i] = {
-        src: tmpItem[0]['imgs'][0]['src'],
-        background: tmpItem[0]['background'],
-        top: tmpItem[0]['imgs'][0]['top'],
-        width: tmpItem[0]['imgs'][0]['width'],
-        height: tmpItem[0]['imgs'][0]['height'],
-        text: tmpItem[0]['fonts'][0]['text'],
-        textTop: tmpItem[0]['fonts'][0]['top'],
-        textColor: tmpItem[0]['fonts'][0]['fontColor'],
-        textSize: tmpItem[0]['fonts'][0]['fontSize']
+    if (props.pageSetting.lucky) {
+      // 过滤配置
+      const tmpItem = props.pageSetting.lucky.prizes.filter(item => item.id === props.prizes[i].ID)
+      if (tmpItem.length > 0) {
+        generatePrizeForm.value[i] = {
+          src: tmpItem[0]['imgs'][0]['src'],
+          background: tmpItem[0]['background'],
+          top: tmpItem[0]['imgs'][0]['top'],
+          width: tmpItem[0]['imgs'][0]['width'],
+          height: tmpItem[0]['imgs'][0]['height'],
+          text: tmpItem[0]['fonts'][0]['text'],
+          textTop: tmpItem[0]['fonts'][0]['top'],
+          textColor: tmpItem[0]['fonts'][0]['fontColor'],
+          textSize: tmpItem[0]['fonts'][0]['fontSize']
+        }
       }
     }
   }
@@ -553,7 +556,6 @@ const pageSettingFormObj = ref({})
 const pageSettingForm = ref({})
 const randomKey = ref(Math.random())
 onMounted(() => {
-  console.log(props.pageSetting)
   initWheelTurntable()
   mergerObject()
 })

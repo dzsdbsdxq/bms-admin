@@ -529,7 +529,7 @@
       top="50px"
       title="页面设置"
       :close-on-click-modal="false"
-      destroy-on-close
+      :before-close="openPageSettingShow"
     >
       <page-setting
         v-if="pageSettingShow"
@@ -810,7 +810,7 @@ const dialogFormVisible = ref(false)
 
 // 打开页面设置标记弹窗
 const openPageSettingShow = () => {
-  pageSettingShow.value = true
+  pageSettingShow.value = !pageSettingShow.value
 }
 /** 奖项设置弹框 */
 const wheelInfo = ref({
@@ -838,9 +838,9 @@ const showWheelPageSettingFunc = async(row) => {
   wheelPageSettingConfig.value = configInfoObj
   wheelPageSetting.value = configInfoStr.data.z !== '' ? JSON.parse(configInfoStr.data.z) : {}
 
-  const prizes = await getSysWheelPrizesList({ id: row.ID, page: 1, pageSize: 30 })
-  if (prizes.code === 0) {
-    wheelInfo.value.prizes = prizes.data.list
+  const { data } = await getSysWheelPrizesList({ id: row.ID, page: 1, pageSize: 30 })
+  if (data.list.length) {
+    wheelInfo.value.prizes = data.list
     wheelInfo.value.wheelId = row.ID
     wheelInfo.value.wheelName = row.name
     wheelInfo.value.previewUrl = `${import.meta.env.VITE_FRONTEND_WEB_URL}/wheels?id=${row.uuid}`
