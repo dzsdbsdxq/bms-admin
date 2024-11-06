@@ -20,9 +20,6 @@
             </div>
             <div class="mt-5 mb-9">
               <p class="text-4xl font-bold text-center">{{ $BMS_ADMIN.appName }}</p>
-              <p class="text-center text-sm font-normal text-gray-500 mt-2.5">
-                社会化媒体营销平台
-              </p>
             </div>
             <el-form
               ref="loginForm"
@@ -137,8 +134,8 @@ loginVerify()
 const loginForm = ref(null)
 const picPath = ref('')
 const loginFormData = reactive({
-  username: 'admin',
-  password: '123456',
+  username: '',
+  password: '',
   captcha: '',
   captchaId: '',
   openCaptcha: false,

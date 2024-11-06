@@ -27,7 +27,7 @@ export const createSysIntegral = (data) => {
 export const deleteSysIntegral = (params) => {
   return service({
     url: '/sysIntegral/deleteSysIntegral',
-    method: 'delete',
+    method: 'post',
     params
   })
 }
@@ -43,7 +43,7 @@ export const deleteSysIntegral = (params) => {
 export const deleteSysIntegralByIds = (params) => {
   return service({
     url: '/sysIntegral/deleteSysIntegralByIds',
-    method: 'delete',
+    method: 'post',
     params
   })
 }
@@ -59,7 +59,7 @@ export const deleteSysIntegralByIds = (params) => {
 export const updateSysIntegral = (data) => {
   return service({
     url: '/sysIntegral/updateSysIntegral',
-    method: 'put',
+    method: 'post',
     data
   })
 }

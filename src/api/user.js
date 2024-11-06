@@ -89,7 +89,7 @@ export const setUserAuthority = (data) => {
 export const deleteUser = (data) => {
   return service({
     url: '/user/deleteUser',
-    method: 'delete',
+    method: 'post',
     data: data
   })
 }
@@ -105,7 +105,7 @@ export const deleteUser = (data) => {
 export const setUserInfo = (data) => {
   return service({
     url: '/user/setUserInfo',
-    method: 'put',
+    method: 'post',
     data: data
   })
 }
@@ -121,7 +121,7 @@ export const setUserInfo = (data) => {
 export const setSelfInfo = (data) => {
   return service({
     url: '/user/setSelfInfo',
-    method: 'put',
+    method: 'post',
     data: data
   })
 }

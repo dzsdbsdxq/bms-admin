@@ -27,7 +27,7 @@ export const createSysExportTemplate = (data) => {
 export const deleteSysExportTemplate = (data) => {
   return service({
     url: '/sysExportTemplate/deleteSysExportTemplate',
-    method: 'delete',
+    method: 'post',
     data
   })
 }
@@ -43,7 +43,7 @@ export const deleteSysExportTemplate = (data) => {
 export const deleteSysExportTemplateByIds = (data) => {
   return service({
     url: '/sysExportTemplate/deleteSysExportTemplateByIds',
-    method: 'delete',
+    method: 'post',
     data
   })
 }
@@ -59,7 +59,7 @@ export const deleteSysExportTemplateByIds = (data) => {
 export const updateSysExportTemplate = (data) => {
   return service({
     url: '/sysExportTemplate/updateSysExportTemplate',
-    method: 'put',
+    method: 'post',
     data
   })
 }

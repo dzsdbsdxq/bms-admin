@@ -126,7 +126,7 @@ export const deleteApi = (data) => {
 export const deleteApisByIds = (data) => {
   return service({
     url: '/api/deleteApisByIds',
-    method: 'delete',
+    method: 'post',
     data
   })
 }

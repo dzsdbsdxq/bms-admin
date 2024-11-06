@@ -4,7 +4,7 @@ import Logo from '@/assets/logo.png'
  */
 
 const config = {
-  appName: 'MS',
+  appName: 'H5支撑平台',
   appLogo: Logo,
   showViteLogo: false,
   logs: [],

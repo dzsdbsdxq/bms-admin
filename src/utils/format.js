@@ -8,6 +8,13 @@ export const formatBoolean = (bool) => {
     return ''
   }
 }
+export const formatBoolean2 = (bool) => {
+  if (bool !== null) {
+    return bool ? '启用' : '停用'
+  } else {
+    return ''
+  }
+}
 export const formatDate = (time) => {
   if (time !== null && time !== '') {
     var date = new Date(time)

@@ -94,7 +94,7 @@
           <template #default="scope">
             <CustomPic
               style="justify-content: start"
-              :pic-src="scope.row.headerImg"
+              :pic-src="scope.row.avatar"
             />
           </template>
         </el-table-column>

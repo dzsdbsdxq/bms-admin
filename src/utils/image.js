@@ -98,4 +98,4 @@ export const isVideoExt = (url) => url.endsWith('.mp4') || url.endsWith('.mov') 
 
 export const isVideoMime = (type) => type === 'video/mp4' || type === 'video/webm' || type === 'video/ogg'
 
-export const isImageMime = (type) => type === 'image/jpeg' || type === 'image/png' || type === 'image/webp' || type === 'image/svg+xml'
+export const isImageMime = (type) => type === 'image/jpeg' || type === 'image/png' || type === 'image/webp' || type === 'image/svg+xml' || type === 'image/gif'

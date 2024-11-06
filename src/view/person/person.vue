@@ -57,21 +57,21 @@
                 <el-tooltip
                   class="item"
                   effect="light"
-                  content="北京反转极光科技有限公司-技术部-前端事业群"
+                  content="深圳广电数字科技有限公司-研发组-研发一室"
                   placement="top"
                 >
                   <li class="info-list">
                     <el-icon>
                       <data-analysis />
                     </el-icon>
-                    北京反转极光科技有限公司-技术部-前端事业群
+                    深圳广电数字科技有限公司-研发组-研发一室
                   </li>
                 </el-tooltip>
                 <li class="info-list">
                   <el-icon>
                     <video-camera />
                   </el-icon>
-                  中国·北京市·朝阳区
+                  中国·广东省·深圳市
                 </li>
                 <el-tooltip
                   class="item"

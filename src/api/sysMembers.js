@@ -27,7 +27,7 @@ export const createSysMembers = (data) => {
 export const deleteSysMembers = (params) => {
   return service({
     url: '/sysMembers/deleteSysMembers',
-    method: 'delete',
+    method: 'post',
     params
   })
 }
@@ -43,7 +43,7 @@ export const deleteSysMembers = (params) => {
 export const deleteSysMembersByIds = (params) => {
   return service({
     url: '/sysMembers/deleteSysMembersByIds',
-    method: 'delete',
+    method: 'post',
     params
   })
 }
@@ -59,7 +59,7 @@ export const deleteSysMembersByIds = (params) => {
 export const updateSysMembers = (data) => {
   return service({
     url: '/sysMembers/updateSysMembers',
-    method: 'put',
+    method: 'post',
     data
   })
 }

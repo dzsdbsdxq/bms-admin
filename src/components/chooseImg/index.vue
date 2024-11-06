@@ -10,11 +10,11 @@
         class="upload-btn-media-library"
         @on-success="open"
       />
-      <upload-image
-        :image-url="imageUrl"
-        :file-size="512"
-        :max-w-h="1080"
-        class="upload-btn-media-library"
+      <upload-common
+        :image-common="imageCommon"
+        :text-tag="`本地上传`"
+        :btn-type="`warning`"
+        :engine="`sztv`"
         @on-success="open"
       />
       <el-form
@@ -26,6 +26,7 @@
           <el-input
             v-model="search.keyword"
             class="keyword"
+            size="small"
             placeholder="请输入文件名或备注"
           />
         </el-form-item>
@@ -84,10 +85,8 @@
 import { getUrl } from '@/utils/image'
 import { ref } from 'vue'
 import { getFileList, editFileName } from '@/api/fileUploadAndDownload'
-import UploadImage from '@/components/upload/image.vue'
 import UploadCommon from '@/components/upload/common.vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-const imageUrl = ref('')
 const imageCommon = ref('')
 
 const search = ref({})

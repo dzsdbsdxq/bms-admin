@@ -197,5 +197,5 @@ const submitForm = () => {
 </script>
 
 <style lang="scss" scoped>
-@import "@/style/newLogin.scss";
+// @import "@/style/newLogin.scss";
 </style>

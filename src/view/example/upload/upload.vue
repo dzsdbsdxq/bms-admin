@@ -1,23 +1,25 @@
 <template>
-  <div v-loading.fullscreen.lock="fullscreenLoading">
+  <div>
     <div class="gva-table-box">
       <warning-bar
-        title="点击“文件名/备注”可以编辑文件名或者备注内容。"
+        title="此处为存储空间文件上传，方便H5端展示图片，请不要上传违法图片，且图片大小不要超过15M"
       />
       <div class="gva-btn-list">
         <upload-common
           :image-common="imageCommon"
           @on-success="getTableData"
         />
-        <upload-image
-          :image-url="imageUrl"
-          :file-size="512"
-          :max-w-h="1080"
+        <upload-common
+          :image-common="imageCommon"
+          :text-tag="`本地上传`"
+          :btn-type="`warning`"
+          :engine="`sztv`"
           @on-success="getTableData"
         />
         <el-input
           v-model="search.keyword"
           class="keyword"
+          size="small"
           placeholder="请输入文件名或备注"
         />
         <el-button
@@ -44,19 +46,9 @@
         </el-table-column>
         <el-table-column
           align="left"
-          label="日期"
-          prop="UpdatedAt"
-          width="180"
-        >
-          <template #default="scope">
-            <div>{{ formatDate(scope.row.UpdatedAt) }}</div>
-          </template>
-        </el-table-column>
-        <el-table-column
-          align="left"
           label="文件名/备注"
           prop="name"
-          width="180"
+          width="300"
         >
           <template #default="scope">
             <div
@@ -69,8 +61,16 @@
           align="left"
           label="链接"
           prop="url"
-          min-width="300"
-        />
+          min-width="250"
+        >
+        <template #default="scope">
+            <el-input
+              v-model="scope.row.url"
+              style="width: 240px"
+              disabled
+            />
+          </template>
+        </el-table-column>
         <el-table-column
           align="left"
           label="标签"
@@ -87,6 +87,16 @@
         </el-table-column>
         <el-table-column
           align="left"
+          label="日期"
+          prop="UpdatedAt"
+          width="180"
+        >
+          <template #default="scope">
+            <div>{{ formatDate(scope.row.UpdatedAt) }}</div>
+          </template>
+        </el-table-column>
+        <el-table-column
+          align="left"
           label="操作"
           width="160"
         >
@@ -96,8 +106,8 @@
               type="primary"
               size="small"
               link
-              @click="downloadFile(scope.row)"
-            >下载</el-button>
+              @click="copyFile(scope.row)"
+            >复制</el-button>
             <el-button
               icon="delete"
               type="primary"
@@ -127,23 +137,21 @@
 
 <script setup>
 import { getFileList, deleteFile, editFileName } from '@/api/fileUploadAndDownload'
-import { downloadImage } from '@/utils/downloadImg'
+// import { downloadImage } from '@/utils/downloadImg'
 import CustomPic from '@/components/customPic/index.vue'
-import UploadImage from '@/components/upload/image.vue'
 import UploadCommon from '@/components/upload/common.vue'
 import { formatDate } from '@/utils/format'
 import WarningBar from '@/components/warningBar/warningBar.vue'
-
+import useClipboard from 'vue-clipboard3'
 import { ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
-
+const { toClipboard } = useClipboard()
 defineOptions({
   name: 'Upload',
 })
 
-const path = ref(import.meta.env.VITE_BASE_API)
+// const path = ref(import.meta.env.VITE_BASE_API)
 
-const imageUrl = ref('')
 const imageCommon = ref('')
 
 const page = ref(1)
@@ -202,12 +210,24 @@ const deleteFileFunc = async(row) => {
     })
 }
 
-const downloadFile = (row) => {
-  if (row.url.indexOf('http://') > -1 || row.url.indexOf('https://') > -1) {
-    downloadImage(row.url, row.name)
-  } else {
-    debugger
-    downloadImage(path.value + '/' + row.url, row.name)
+// const downloadFile = (row) => {
+//   if (row.url.indexOf('http://') > -1 || row.url.indexOf('https://') > -1) {
+//     downloadImage(row.url, row.name)
+//   } else {
+//     debugger
+//     downloadImage(path.value + '/' + row.url, row.name)
+//   }
+// }
+
+const copyFile = async(row) => {
+  try {
+    await toClipboard(row.url)
+    ElMessage({
+      type: 'success',
+      message: '复制成功',
+    })
+  } catch (e) {
+    console.error(e)
   }
 }
 

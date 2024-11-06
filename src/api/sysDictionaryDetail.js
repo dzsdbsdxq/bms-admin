@@ -26,7 +26,7 @@ export const createSysDictionaryDetail = (data) => {
 export const deleteSysDictionaryDetail = (data) => {
   return service({
     url: '/sysDictionaryDetail/deleteSysDictionaryDetail',
-    method: 'delete',
+    method: 'post',
     data
   })
 }
@@ -42,7 +42,7 @@ export const deleteSysDictionaryDetail = (data) => {
 export const updateSysDictionaryDetail = (data) => {
   return service({
     url: '/sysDictionaryDetail/updateSysDictionaryDetail',
-    method: 'put',
+    method: 'post',
     data
   })
 }

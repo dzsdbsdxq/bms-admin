@@ -217,20 +217,3 @@
 .el-tabs {
     --el-tabs-header-height: 30px !important;
 }
-
-.prizeSettingBox {
-    .el-card__header {
-        @apply pt-2 px-2 pb-2;
-    }
-}
-.prizes_text-input {
-    .el-input-group__append {
-        background: none !important;
-        padding: 0 !important;
-        border: none !important;
-        box-shadow: none !important;
-        .el-color-picker__trigger{
-            border: none !important;
-        }
-    }
-}

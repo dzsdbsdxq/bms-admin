@@ -25,8 +25,8 @@ export const createExaCustomer = (data) => {
 // @Router /customer/customer [put]
 export const updateExaCustomer = (data) => {
   return service({
-    url: '/customer/customer',
-    method: 'put',
+    url: '/customer/update',
+    method: 'post',
     data
   })
 }
@@ -41,8 +41,8 @@ export const updateExaCustomer = (data) => {
 // @Router /customer/customer [delete]
 export const deleteExaCustomer = (data) => {
   return service({
-    url: '/customer/customer',
-    method: 'delete',
+    url: '/customer/delete',
+    method: 'post',
     data
   })
 }
