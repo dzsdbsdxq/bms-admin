@@ -8,7 +8,7 @@
           icon="plus"
           size="small"
           @click="openDialog"
-        >新增</el-button>
+        >添加任务</el-button>
         <!-- <el-button
           icon="delete"
           style="margin-left: 10px;"
@@ -38,9 +38,9 @@
 
         <el-table-column
           align="left"
-          label="所属用户"
+          label="令牌用户名"
           prop="user"
-          width="120"
+          width="220"
         />
         <el-table-column
           align="left"
@@ -144,7 +144,7 @@
       v-model="dialogFormVisible"
       width="30%"
       :show-close="true"
-      :title="type===`create`?`添加`:`修改`"
+      :title="type===`create`?`添加任务`:`修改任务`"
       :before-close="closeDialog"
     >
       <template #footer>
@@ -182,23 +182,57 @@
           />
         </el-form-item>
         <el-form-item
-          label="git用户名:"
+          label="部署令牌用户名:"
           prop="user"
         >
+          <template #label>
+            <div>
+              <span> 部署令牌用户名： </span>
+              <el-tooltip
+                content="点击查看如何获取部署令牌？"
+                placement="top"
+                effect="light"
+              >
+                <span
+                  style="color:red;cursor:pointer;"
+                  @click="howToCreateAuth"
+                >如何获取部署令牌？
+                  <el-icon><QuestionFilled /></el-icon>
+                </span>
+              </el-tooltip>
+            </div>
+          </template>
           <el-input
             v-model="formData.user"
             :clearable="true"
-            placeholder="请输入git用户名"
+            placeholder="请输入git仓库部署令牌用户名"
           />
         </el-form-item>
         <el-form-item
-          label="git令牌:"
+          label="部署令牌密码:"
           prop="auth"
         >
+          <template #label>
+            <div>
+              <span> 部署令牌密码： </span>
+              <el-tooltip
+                content="点击查看如何获取部署令牌密码？"
+                placement="top"
+                effect="light"
+              >
+                <span
+                  style="color:red;cursor:pointer;"
+                  @click="howToCreateAuth"
+                >如何获取部署令牌？
+                  <el-icon><QuestionFilled /></el-icon>
+                </span>
+              </el-tooltip>
+            </div>
+          </template>
           <el-input
             v-model="formData.auth"
             :clearable="true"
-            placeholder="请输入AccessToken令牌"
+            placeholder="请输入部署令牌"
           />
         </el-form-item>
         <el-form-item
@@ -208,7 +242,7 @@
           <el-input
             v-model="formData.url"
             :clearable="true"
-            placeholder="请输入git地址"
+            placeholder="请输入git地址（https://example.com/example.git）"
           />
         </el-form-item>
         <el-form-item
@@ -218,7 +252,7 @@
           <el-input
             v-model="formData.branch"
             :clearable="true"
-            placeholder="请输入分支名称"
+            placeholder="请输入分支名称(默认master分支)"
           />
         </el-form-item>
         <el-form-item
@@ -228,8 +262,10 @@
           <el-input
             v-model="formData.remark"
             :clearable="true"
-            placeholder="请输入项目访问路径"
-          />
+            placeholder="请输入项目访问路径(前后不需携带/)"
+          >
+            <template #prepend>https://www.sztv.com.cn/huodong/</template>
+          </el-input>
         </el-form-item>
       </el-form>
     </el-dialog>
@@ -249,7 +285,6 @@ import {
 
 // 全量引入格式化工具 请按需保留
 import { formatDate } from '@/utils/format'
-import { SimpleCryptoEncode } from '@/utils/simpleCryptoEncode'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { ref, reactive } from 'vue'
 
@@ -262,7 +297,7 @@ const submitText = ref('确 定')
 // 自动化生成的字典（可能为空）以及字段
 const formData = ref({
   auth: '',
-  branch: '',
+  branch: 'master',
   name: '',
   operator: '',
   remark: '',
@@ -333,6 +368,9 @@ const deleteRow = (row) => {
   }).then(() => {
     deleteSysGitsFunc(row)
   })
+}
+const howToCreateAuth = () => {
+  window.open('https://www.sztv.com.cn/ysz/upload/Image/mrtp/2024/11/08/2d7de757156041569066d5e9f095ea20.png')
 }
 
 // 多选删除
@@ -466,7 +504,8 @@ const enterDialog = async() => {
     if (!valid) return
     submitLoading.value = true
     submitText.value = '部署中'
-    formData.value.auth = SimpleCryptoEncode(formData.value.auth)
+    // formData.value.auth = SimpleCryptoEncode(formData.value.auth)
+    formData.value.branch = formData.value.branch === '' ? 'master' : formData.value.branch
     let res
     switch (type.value) {
       case 'create':

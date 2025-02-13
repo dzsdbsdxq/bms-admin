@@ -1,4 +1,0 @@
-/*! 
- Build based on gin-vue-admin 
- Time : 1730879480000 */
-System.register(["./087AC4D233B64EB0index-legacy.65cdef7f.js"],(function(t,e){"use strict";var n;return{setters:[function(t){n=t.K}],execute:function(){t("c",(function(t){return n({url:"/sysChannelDistribute/createSysChannelDistribute",method:"post",data:t})})),t("a",(function(t){return n({url:"/sysChannelDistribute/deleteSysChannelDistribute",method:"post",params:t})})),t("d",(function(t){return n({url:"/sysChannelDistribute/deleteSysChannelDistributeByIds",method:"post",params:t})})),t("u",(function(t){return n({url:"/sysChannelDistribute/updateSysChannelDistribute",method:"post",data:t})})),t("f",(function(t){return n({url:"/sysChannelDistribute/findSysChannelDistribute",method:"get",params:t})})),t("g",(function(t){return n({url:"/sysChannelDistribute/getSysChannelDistributeList",method:"get",params:t})}))}}}));

@@ -1,0 +1,4 @@
+/*! 
+ Build based on gin-vue-admin 
+ Time : 1733913561000 */
+System.register(["./087AC4D233B64EB0index-legacy.3dd65b68.js"],(function(t,e){"use strict";var s;return{setters:[function(t){s=t.K}],execute:function(){t("c",(function(t){return s({url:"/sysExtendsDetails/createSysExtendsDetails",method:"post",data:t})})),t("a",(function(t){return s({url:"/sysExtendsDetails/deleteSysExtendsDetails",method:"post",params:t})})),t("d",(function(t){return s({url:"/sysExtendsDetails/deleteSysExtendsDetailsByIds",method:"post",params:t})})),t("u",(function(t){return s({url:"/sysExtendsDetails/updateSysExtendsDetails",method:"post",data:t})})),t("f",(function(t){return s({url:"/sysExtendsDetails/findSysExtendsDetails",method:"get",params:t})})),t("g",(function(t){return s({url:"/sysExtendsDetails/getSysExtendsDetailsList",method:"get",params:t})}))}}}));

@@ -1,4 +1,0 @@
-/*! 
- Build based on gin-vue-admin 
- Time : 1730879480000 */
-System.register(["./087AC4D233B64EB0index-legacy.65cdef7f.js"],(function(e,s){"use strict";var t;return{setters:[function(e){t=e.K}],execute:function(){e("c",(function(e){return t({url:"/sysMembers/createSysMembers",method:"post",data:e})})),e("a",(function(e){return t({url:"/sysMembers/deleteSysMembers",method:"post",params:e})})),e("d",(function(e){return t({url:"/sysMembers/deleteSysMembersByIds",method:"post",params:e})})),e("u",(function(e){return t({url:"/sysMembers/updateSysMembers",method:"post",data:e})})),e("f",(function(e){return t({url:"/sysMembers/findSysMembers",method:"get",params:e})})),e("g",(function(e){return t({url:"/sysMembers/getSysMembersList",method:"get",params:e})})),e("r",(function(e){return t({url:"/sysMembers/resetPassword",method:"post",data:e})})),e("s",(function(e){return t({url:"/sysMembers/scoreUpdate",method:"post",data:e})}))}}}));

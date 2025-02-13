@@ -1,0 +1,4 @@
+/*! 
+ Build based on gin-vue-admin 
+ Time : 1733913561000 */
+System.register(["./087AC4D233B64EB0index-legacy.3dd65b68.js"],(function(e,s){"use strict";var t;return{setters:[function(e){t=e.K}],execute:function(){e("c",(function(e){return t({url:"/sysVideoLabels/createSysVideoLabels",method:"post",data:e})})),e("a",(function(e){return t({url:"/sysVideoLabels/deleteSysVideoLabels",method:"post",params:e})})),e("d",(function(e){return t({url:"/sysVideoLabels/deleteSysVideoLabelsByIds",method:"post",params:e})})),e("u",(function(e){return t({url:"/sysVideoLabels/updateSysVideoLabels",method:"post",data:e})})),e("f",(function(e){return t({url:"/sysVideoLabels/findSysVideoLabels",method:"get",params:e})})),e("g",(function(e){return t({url:"/sysVideoLabels/getSysVideoLabelsList",method:"get",params:e})}))}}}));

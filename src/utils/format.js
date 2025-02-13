@@ -1,4 +1,4 @@
-import { formatTimeToStr } from '@/utils/date'
+import { formatTimeToStr, formatDateToTimeStamp } from '@/utils/date'
 import { getDict } from '@/utils/dictionary'
 
 export const formatBoolean = (bool) => {
@@ -21,6 +21,13 @@ export const formatDate = (time) => {
     return formatTimeToStr(date, 'yyyy-MM-dd hh:mm:ss')
   } else {
     return ''
+  }
+}
+export const formatTimeStamp = (time) => {
+  if (time !== null && time !== '') {
+    return formatDateToTimeStamp(time)
+  } else {
+    return 0
   }
 }
 

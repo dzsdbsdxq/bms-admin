@@ -28,3 +28,9 @@ export function formatTimeToStr(times, pattern) {
   }
   return d.toLocaleString()
 }
+
+export function formatDateToTimeStamp(time) {
+  const date = new Date(time)
+  const timestamp = Date.parse(date)
+  return timestamp / 1000
+}

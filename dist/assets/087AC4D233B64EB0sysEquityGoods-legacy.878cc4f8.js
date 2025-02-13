@@ -1,4 +1,0 @@
-/*! 
- Build based on gin-vue-admin 
- Time : 1730879480000 */
-System.register(["./087AC4D233B64EB0index-legacy.65cdef7f.js"],(function(t,s){"use strict";var o;return{setters:[function(t){o=t.K}],execute:function(){t("c",(function(t){return o({url:"/sysEquityGoods/createSysEquityGoods",method:"post",data:t})})),t("a",(function(t){return o({url:"/sysEquityGoods/deleteSysEquityGoods",method:"post",params:t})})),t("d",(function(t){return o({url:"/sysEquityGoods/deleteSysEquityGoods",method:"post",params:t})})),t("u",(function(t){return o({url:"/sysEquityGoods/updateSysEquityGoods",method:"post",data:t})})),t("f",(function(t){return o({url:"/sysEquityGoods/findSysEquityGoods",method:"get",params:t})})),t("g",(function(t){return o({url:"/sysEquityGoods/getSysEquityGoodsList",method:"get",params:t})}))}}}));

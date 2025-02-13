@@ -96,6 +96,6 @@ export const getUrl = (url) => url && url.slice(0, 4) !== 'http' ? path + url : 
 
 export const isVideoExt = (url) => url.endsWith('.mp4') || url.endsWith('.mov') || url.endsWith('.webm') || url.endsWith('.ogg')
 
-export const isVideoMime = (type) => type === 'video/mp4' || type === 'video/webm' || type === 'video/ogg'
+export const isVideoMime = (type) => type === 'video/mp4' || type === 'video/webm' || type === 'video/ogg' || type === 'video/quicktime' || type === 'video/x-msvideo' || type === 'video/avi' || type === 'video/mpeg' || type === 'video/x-flv' || type === 'video/x-ms-wmv' || type === 'video/x-matroska' || type === 'video/x-ms-asf' || type === 'video/x-m4v'
 
 export const isImageMime = (type) => type === 'image/jpeg' || type === 'image/png' || type === 'image/webp' || type === 'image/svg+xml' || type === 'image/gif'
